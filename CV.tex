@@ -1,0 +1,211 @@
+
+\documentclass[10pt,a4paper]{article}
+%\usepackage[cm]{fullpage}
+\usepackage[danish]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[margin=1.1cm]{geometry}
+\usepackage[top=1.5cm, bottom=1.5cm, left=1.2cm, right=1.2cm]{geometry}
+%\usepackage[official]{eurosym}
+%\usepackage{eso-pic}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{graphicx}%,epic,eepic}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{latexsym}
+%\usepackage[usenames,dvipsnames]{color}
+\usepackage{float}
+\usepackage{calc}
+\usepackage{pdfpages}
+\usepackage{epstopdf}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{nameref}
+\usepackage{setspace}
+% \usepackage{slashbox}
+\usepackage{color, colortbl}
+\usepackage{microtype}
+\usepackage{vwcol}
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{xparse}
+
+\ExplSyntaxOn
+\NewDocumentCommand{\makebullet}{ m }
+ {
+  \clist_map_inline:nn { #1 } { $\bullet$ \hspace{0.1cm} ##1 \hspace{0.2cm} }
+ }
+\ExplSyntaxOff
+
+\definecolor{MyColor}{rgb}{0.83,0.87,0.94}
+\makeatletter\newenvironment{Colorbox}{%
+   \begin{lrbox}{\@tempboxa}\begin{minipage}{\columnwidth}}{\end{minipage}\end{lrbox}%
+   \colorbox{MyColor}{\usebox{\@tempboxa}}
+}\makeatother
+
+\newlength{\mylen}
+\newcommand{\myflexbox}[2][7em]{%
+  \settowidth{\mylen}{#2}%
+    \makebox[#1][l]{#2}%
+}
+
+\newcommand{\dunderline}[1]{\underline{\underline{#1}}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\bcb}{\begin{Colorbox}}
+\newcommand{\ecb}{\end{Colorbox}}
+\newcommand{\Repeat}[2]{% \repeat already defined
+    \foreach \n in {1,...,#1}{#2}
+}
+\newcommand{\newprojects}[3]{\\\textbf{#1}\\#2\\ \makebullet{#3}\\}
+\newcommand{\textline}[3]{\textbf{#1} #2 \hfill \textit{#3}}
+
+%\newcommand{\proficiencysquare}[2]{\tikz \node (rect) at (0,0) [draw,minimum width=(\columnwidth - \widthof{#1})/20,minimum height=4pt,fill=#2!100] {};\hspace{2pt}}
+\newcommand{\proficiencysquare}[3]{\tikz \node (rect) at (0,0) [draw=none,minimum width=(\columnwidth - #1)/20,minimum height=4pt,fill=#2!40] {};\hspace{#3}}
+
+\newcommand{\proficiencycircle}[3]{\tikz \node at (0,0) [circle,draw,minimum size=(\columnwidth - #1)/20,fill=#2!30] {};\hspace{#3}}
+
+\newcommand{\proficiency}[3]{#1\Repeat{#2}{\proficiencysquare{#1}{#3}}}
+
+\newcommand{\proficientsquare}[5]{\myflexbox{#1}\Repeat{#2}{\proficiencysquare{#3}{#4}{#5}}}
+
+\newcommand{\proficientcircle}[5]{\myflexbox{#1}\Repeat{#2}{\proficiencycircle{#3}{#4}{#5}}}
+
+%\usepackage{blindtext}
+
+\linespread{1.0}
+
+\begin{document}
+\pagenumbering{gobble}
+%\fontfamily{cmss}
+\parindent0em
+\fontfamily{qag}
+\begin{minipage}[t]{0.5\linewidth}
+\vspace{-3.85cm}
+{\Huge Rógvi Dávid Arge }\\
+
+{\Large Data Science \& Analytics Consultant}
+\vspace{0.3cm}
+
+Phone: +45 5042 5002
+
+\vspace{0.1cm}
+E-mail: argeinnovations@gmail.com
+
+\vspace{0.1cm}
+LinkedIn: \url{http://dk.linkedin.com/in/rogvidarge/en}
+
+\vspace{0.1cm}
+GitHub: \url{https://github.com/rogvid}\\
+%Portfolio: \url{https://rogvid.github.io}
+\vspace{-1.6cm}
+\end{minipage}\hspace{0.1cm}
+\hfill\begin{minipage}[t]{0.3\linewidth}\raggedleft
+    \includegraphics[width=0.7\columnwidth]{workpicture.png}
+\end{minipage}
+
+\vspace{0.3cm}
+\hrule
+\vspace{0.5cm}
+{\Large \textcolor[HTML]{999999}{SUMMARY}}\\
+Data Science Consultant with 2+ years experience in agile project development and a passion for machine learning and optimization. Vast experience in data wrangling, exploratory data analysis, machine learning and data visualization and applying these skills to generate corporate wide optimizations. Expert at involving- and making the business take ownership of projects.\\
+\vspace{0.3cm}
+\\
+  \begin{minipage}[t]{0.66\linewidth}
+    {\Large \textcolor[HTML]{777777}{EXPERIENCE}}\\
+    \vspace{-8pt}\\
+    \textbf{Arge Innovations} $|$ Owner \& Data Science Consultant \hfill \textit{Dec. 2018 -} \\
+    Agile development and deployment of data science, and optimization products.\\
+    \newprojects{Arge Innovations $|$ Data Science Consultant - DFDS A/S \\ Projects \hfill \textmd{\textit{Dec. 2018 - May. 2019}}}{$\bullet$ Helped migrate linear regression model to Python and guide the development and implementation of a scalable new machine learning approach \\ $\bullet$ Scoped, developed, and deployed an optimization algorightm for transport operations \\ $\bullet$ Deployed dockerized Flask APIs and Frontends to DFDS Kubernetes cluster}{}
+    \textbf{ATP=} $|$ Data Scientist \hfill \textit{Feb. 2017 - Dec. 2018} \\
+    $\bullet$ Developed database monitoring system essential for our day to day work\\
+    $\bullet$ Built Machine Learning model for predicting citizens with false addresses\\
+    $\bullet$ Developed multiple expert systems designed to capture specific types of fraudulent behaviour\\
+    %\textbf{ArgeX} $|$ Owner \& Developer \hfill \textit{Nov. 2015 -} \\
+    %Develop and help design VBA macros to analyze and automize language translation\\
+    \\
+    \textbf{ConWX} $|$ Programmer \& Data Analyst \hfill \textit{Apr. 2015 - Feb. 2017} \\
+    $\bullet$ Discovered and validated a way to improve forecasting for our clients by 10-25\% vastly increasing client profit per month\\
+    $\bullet$ Designed and developed a monitoring system essential for forecast quality assurance and improvement\\
+    %\textbf{ArgeX} $|$ Owner \& Developer \hfill \textit{Nov. 2015 -} \\
+    %Develop and help design VBA macros to analyze and automize language translation\\
+    \newprojects{Udacity Data Analyst Nanodegree Project \\ Explore and Summarize Data \hfill \textmd{\textit{Feb. 2016}}}{Scraped the \textcolor{blue}{\url{Boliga.dk}}, downloaded income statistics for people in Copenhagen. EDA showed an explosive increase in appartment prices around 500\%, as well as the effects of the economic crisis on declining size of raises.}{Python, R, MongoDB, EDA, Data Wrangling}
+    \\
+
+    {\Large \textcolor[HTML]{999999}{EDUCATION}}\\
+    \vspace{-8pt}\\
+    \textline{Coursera}{Deep learning}{2018}\\
+    Deep Learning Specialization by Andrew Ng on the MOOC Coursera\\
+    \\
+    \textline{Udacity}{Data Analyst Nanodegree}{2015 - 2017}\\
+    Project based online education teaching essential knowledge and skills for data scientists.\\
+    \\
+    \textline{Copenhagen University}{MSc in Physics}{2012 - 2015}\\
+    Focus on computational physics, machine learning and mathematical modeling.\\
+
+  \end{minipage}\hfill\vline\hfill
+\begin{minipage}[t]{0.29\linewidth}
+    {\Large \textcolor[HTML]{999999}{TECHNICAL SKILLS}}\\
+    \vspace{-8pt}\\
+    \hspace*{-6pt}\begin{tabular}{l l l}
+        Python & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+        Machine Learning & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+        Optimization & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+        Operations Research & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+        Data Visualization & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+        Data Analysis & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+        Modeling & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+        Statistics & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+        Git & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+        SQL & \Repeat{4}{\proficiencysquare{0}{green}{1.5pt}}\\
+        D3 & \Repeat{4}{\proficiencysquare{0}{green}{1.5pt}}\\
+        HTML & \Repeat{4}{\proficiencysquare{0}{green}{1.5pt}}\\
+        CSS & \Repeat{4}{\proficiencysquare{0}{green}{1.5pt}}\\
+        JavaScript & \Repeat{3}{\proficiencysquare{0}{green}{1.5pt}}\\
+        C\# & \Repeat{3}{\proficiencysquare{0}{gray}{1.5pt}}\\
+        Docker & \Repeat{3}{\proficiencysquare{0}{gray}{1.5pt}}\\
+        AWS & \Repeat{3}{\proficiencysquare{0}{gray}{1.5pt}}\\
+        Azure & \Repeat{3}{\proficiencysquare{0}{gray}{1.5pt}}\\
+        MongoDB & \Repeat{3}{\proficiencysquare{0}{gray}{1.5pt}}\\
+        R & \Repeat{3}{\proficiencysquare{0}{gray}{1.5pt}}\\
+    \end{tabular}
+    \\
+    \vspace{0.5cm}
+
+    {\Large \textcolor[HTML]{999999}{SOFT SKILLS}}\\
+    \vspace{-8pt}\\
+    \hspace*{-6pt}\begin{tabular}{l l l}
+        Problem Solving & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+        Critical Thinking \hspace{10pt} & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+        Communication & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+        Adaptability & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+        Project Planning & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+        Decision Making & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+        Scrum & \Repeat{4}{\proficiencysquare{0}{green}{1.5pt}}\\
+    \end{tabular}
+    \vspace{0.5cm}
+
+    {\Large \textcolor[HTML]{777777}{LANGUAGES}}\\
+    \vspace{-8pt}\\
+    \textbf{Native- or bilingual proficiency}\\
+    \hspace*{-6pt}\begin{tabular}{l l l}
+        Faroese & \hspace{44pt} & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+        Danish & \hspace{44pt} & \Repeat{5}{\proficiencysquare{0}{green}{1.5pt}}\\
+    \end{tabular}\\
+    \textbf{Full professional proficiency}\\
+    \hspace*{-6pt}\begin{tabular}{l l l}
+        English & \hspace{44pt} & \Repeat{4}{\proficiencysquare{0}{green}{1.5pt}}\\
+    \end{tabular}\\
+    \textbf{Elementary proficiency}\\
+    \hspace*{-6pt}\begin{tabular}{l l l}
+        Norwegian & \hspace{30pt} & \Repeat{3}{\proficiencysquare{0}{gray}{1.5pt}}\\
+        Swedish & \hspace{30pt} & \Repeat{3}{\proficiencysquare{0}{gray}{1.5pt}}\\
+        French & \hspace{30pt} & \Repeat{2}{\proficiencysquare{0}{gray}{1.5pt}}\\
+    \end{tabular}\\
+\end{minipage}
+\end{document}
