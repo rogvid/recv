@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.11)  28 MAR 2019 21:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.11)  31 MAR 2019 14:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1233,36 +1233,40 @@ Package: xparse 2018/02/21 L3 Experimental document command parser
 \l__xparse_m_args_int=\count301
 \l__xparse_mandatory_args_int=\count302
 \l__xparse_v_nesting_int=\count303
+) (/usr/share/texlive/texmf-dist/tex/latex/changepage/changepage.sty
+Package: changepage 2009/10/20 v1.0c check page and change page layout
+\c@cp@cntr=\count304
+\cp@tempcnt=\count305
 )
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \makebullet with sig. 'm' on line 42.
+. Defining command \makebullet with sig. 'm' on line 43.
 .................................................
 \mylen=\skip91
  (./CV.aux)
 \openout1 = `CV.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 83.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 83.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 108.
+LaTeX Font Info:    ... okay on input line 108.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 108.
+LaTeX Font Info:    ... okay on input line 108.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 108.
+LaTeX Font Info:    ... okay on input line 108.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 108.
+LaTeX Font Info:    ... okay on input line 108.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 108.
+LaTeX Font Info:    ... okay on input line 108.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 108.
+LaTeX Font Info:    ... okay on input line 108.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 108.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 108.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    ... okay on input line 108.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 108.
+LaTeX Font Info:    ... okay on input line 108.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1273,11 +1277,11 @@ LaTeX Font Info:    ... okay on input line 83.
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
 * h-part:(L,W,R)=(34.14322pt, 529.22144pt, 34.14322pt)
-* v-part:(T,H,B)=(42.67912pt, 759.6886pt, 42.67912pt)
+* v-part:(T,H,B)=(42.67912pt, 768.2245pt, 34.14322pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
 * \textwidth=529.22144pt
-* \textheight=759.6886pt
+* \textheight=768.2245pt
 * \oddsidemargin=-38.12677pt
 * \evensidemargin=-38.12677pt
 * \topmargin=-66.59087pt
@@ -1300,16 +1304,16 @@ LaTeX Font Info:    ... okay on input line 83.
 
 ABD: EveryShipout initializing macros (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count304
+\scratchcounter=\count306
 \scratchdimen=\dimen274
 \scratchbox=\box62
-\nofMPsegments=\count305
-\nofMParguments=\count306
+\nofMPsegments=\count307
+\nofMParguments=\count308
 \everyMPshowfont=\toks49
-\MPscratchCnt=\count307
+\MPscratchCnt=\count309
 \MPscratchDim=\dimen275
-\MPnumerator=\count308
-\makeMPintoPDFobject=\count309
+\MPnumerator=\count310
+\makeMPintoPDFobject=\count311
 \everyMPtoPDFconversion=\toks50
 )
 \AtBeginShipoutBox=\box63
@@ -1323,15 +1327,15 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 83.
-LaTeX Info: Redefining \ref on input line 83.
-LaTeX Info: Redefining \pageref on input line 83.
-LaTeX Info: Redefining \nameref on input line 83.
+Package hyperref Info: Link coloring OFF on input line 108.
+LaTeX Info: Redefining \ref on input line 108.
+LaTeX Info: Redefining \pageref on input line 108.
+LaTeX Info: Redefining \nameref on input line 108.
  (./CV.out) (./CV.out)
 \@outlinefile=\write4
 \openout4 = `CV.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 83.
+LaTeX Info: Redefining \microtypecontext on input line 108.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1344,17 +1348,9 @@ Package microtype Info: No adjustment of character kerning.
  (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 ) ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 83.
-LaTeX Font Info:    Try loading font information for OT1+qag on input line 90.
- (/usr/share/texmf/tex/latex/tex-gyre/ot1qag.fd
-File: ot1qag.fd 2009/09/25 v1.2 font definition file for OT1/qag
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `qag' (encoding: OT1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
+LaTeX Info: Redefining \selectfont on input line 108.
 
-Underfull \hbox (badness 10000) in paragraph at lines 90--91
+Underfull \hbox (badness 10000) in paragraph at lines 116--117
 
  []
 
@@ -1362,122 +1358,135 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for U+msa on input line 101.
+LaTeX Font Info:    Try loading font information for U+msa on input line 127.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 101.
+LaTeX Font Info:    Try loading font information for U+msb on input line 127.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 101.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 127.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 <workpicture.png, id=9, 158.191pt x 158.191pt>
 File: workpicture.png Graphic file (type png)
 <use workpicture.png>
-Package pdftex.def Info: workpicture.png  used on input line 109.
+Package pdftex.def Info: workpicture.png  used on input line 135.
 (pdftex.def)             Requested size: 111.13713pt x 111.13844pt.
-LaTeX Font Info:    Font shape `OT1/qag/bx/n' in size <10> not available
-(Font)              Font shape `OT1/qag/b/n' tried instead on input line 122.
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--139
+Underfull \hbox (badness 10000) in paragraph at lines 147--171
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--139
+Underfull \hbox (badness 10000) in paragraph at lines 147--171
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--139
+Underfull \hbox (badness 10000) in paragraph at lines 147--171
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--139
+Underfull \hbox (badness 10000) in paragraph at lines 147--171
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--139
+Underfull \hbox (badness 10000) in paragraph at lines 147--171
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--139
+Underfull \hbox (badness 10000) in paragraph at lines 147--171
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--150
+Underfull \hbox (badness 10000) in paragraph at lines 172--182
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--150
+Underfull \hbox (badness 10000) in paragraph at lines 172--182
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--150
+Underfull \hbox (badness 10000) in paragraph at lines 172--182
 
  []
 
 
-Overfull \hbox (0.70265pt too wide) in paragraph at lines 153--179
+Overfull \hbox (7.37799pt too wide) in paragraph at lines 185--211
 | [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--192
+Overfull \hbox (7.2669pt too wide) in paragraph at lines 212--224
 | []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 193--210
+Overfull \hbox (5.46124pt too wide) in paragraph at lines 225--233
+| [] 
+ []
+
+
+Overfull \hbox (5.48904pt too wide) in paragraph at lines 234--239
+| [] 
+ []
+
+
+Overfull \hbox (5.21127pt too wide) in paragraph at lines 240--246
+| [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 240--246
 
  []
 
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 211.
+(babel)             in language  on input line 247.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 211.
+(babel)             in language  on input line 247.
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 211.
+(babel)             in language  on input line 247.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 211.
+(babel)             in language  on input line 247.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./workpicture.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 211.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 211.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 247.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 247.
  (./CV.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 211.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 211.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 247.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 247.
 Package rerunfilecheck Info: File `CV.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 211.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 247.
  ) 
 Here is how much of TeX's memory you used:
- 29929 strings out of 494340
- 563029 string characters out of 6164410
- 795591 words of memory out of 5000000
- 32803 multiletter control sequences out of 15000+600000
- 546325 words of font info for 47 fonts, out of 8000000 for 9000
+ 29936 strings out of 494340
+ 563134 string characters out of 6164410
+ 843538 words of memory out of 5000000
+ 32802 multiletter control sequences out of 15000+600000
+ 534491 words of font info for 50 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
- 55i,16n,54p,10386b,741s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-rm.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qagb.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qagr.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qagri.pfb>
-Output written on CV.pdf (1 page, 179968 bytes).
+ 55i,16n,59p,10409b,770s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on CV.pdf (1 page, 177015 bytes).
 PDF statistics:
- 47 PDF objects out of 1000 (max. 8388607)
- 35 compressed objects within 1 object stream
+ 50 PDF objects out of 1000 (max. 8388607)
+ 37 compressed objects within 1 object stream
  2 named destinations out of 1000 (max. 500000)
- 6162 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 7186 words of extra memory for PDF output out of 10000 (max. 10000000)
 
