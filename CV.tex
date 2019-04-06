@@ -77,6 +77,11 @@
 
 \newcommand{\proficientcircle}[5]{\myflexbox{#1}\Repeat{#2}{\proficiencycircle{#3}{#4}{#5}}}
 
+\usepackage[defaultfam,light,tabular,lining]{montserrat} %% Option 'defaultfam'
+%% only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}} % Only if the base font of the document is to be sans serif
+
 \definecolor{carmine}{rgb}{0.59, 0.0, 0.09}
 \definecolor{coralred}{rgb}{1.0, 0.25, 0.25}
 \definecolor{darkscarlet}{rgb}{0.34, 0.01, 0.1}
@@ -99,7 +104,7 @@
         }%
     }
 
-\newcommand{\accomplishment}[1]{{\hspace*{-9pt}\textcolor{dodgerblue}{$\bullet$}}\hspace*{4pt}#1}
+\newcommand{\accomplishment}[1]{{\hspace*{-9pt}\textcolor{dodgerblue}{$\bullet$}}\hspace*{4pt}\linespread{1.1}\footnotesize#1}
 
 %\usepackage{blindtext}
 
@@ -135,7 +140,7 @@ GitHub: \url{https://github.com/rogvid}\\
     \includegraphics[width=0.7\columnwidth]{workpicture.png}
 \end{minipage}
 
-\vspace{0.3cm}
+\vspace{0.5cm}
 \hrule
 \vspace{0.5cm}
 {\headline{SUMMARY}}\\
