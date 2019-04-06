@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.14)  6 APR 2019 16:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.14)  6 APR 2019 16:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1445,6 +1445,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 120--121
 
 LaTeX Font Info:    Font shape `T1/Montserrat-TLF/l/n' will be
 (Font)              scaled to size 14.4pt on input line 122.
+
+Overfull \hbox (19.5009pt too wide) in paragraph at lines 122--124
+[][]
+ []
+
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 131.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/t1cmtt.fd
@@ -1495,9 +1500,7 @@ LaTeX Font Info:    Font shape `T1/Montserrat-TLF/l/it' will be
 LaTeX Font Info:    Font shape `T1/Montserrat-TLF/l/n' will be
 (Font)              scaled to size 8.0pt on input line 160.
 LaTeX Font Info:    Font shape `T1/Montserrat-TLF/b/n' will be
-(Font)              scaled to size 8.0pt on input line 161.
-LaTeX Font Info:    Font shape `T1/Montserrat-TLF/l/it' will be
-(Font)              scaled to size 8.0pt on input line 161.
+(Font)              scaled to size 8.0pt on input line 173.
 
 Underfull \hbox (badness 10000) in paragraph at lines 151--175
 
@@ -1534,6 +1537,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 151--175
 
  []
 
+LaTeX Font Info:    Font shape `T1/Montserrat-TLF/l/it' will be
+(Font)              scaled to size 8.0pt on input line 178.
 
 Underfull \hbox (badness 10000) in paragraph at lines 176--186
 
@@ -1607,7 +1612,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 251.
 Here is how much of TeX's memory you used:
  30739 strings out of 492649
  584096 string characters out of 6129621
- 861956 words of memory out of 5000000
+ 862979 words of memory out of 5000000
  34049 multiletter control sequences out of 15000+600000
  597607 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1623,7 +1628,7 @@ ic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/
 cm-super/sftt0800.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm
 -super/sftt1000.pfb>
-Output written on CV.pdf (1 page, 265311 bytes).
+Output written on CV.pdf (1 page, 265035 bytes).
 PDF statistics:
  53 PDF objects out of 1000 (max. 8388607)
  40 compressed objects within 1 object stream
