@@ -77,15 +77,19 @@
 
 \newcommand{\proficientcircle}[5]{\myflexbox{#1}\Repeat{#2}{\proficiencycircle{#3}{#4}{#5}}}
 
+\usepackage[defaultfam,light,tabular,lining]{montserrat} %% Option 'defaultfam'
+%% only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}} % Only if the base font of the document is to be sans serif
+
 \definecolor{carmine}{rgb}{0.59, 0.0, 0.09}
 \definecolor{coralred}{rgb}{1.0, 0.25, 0.25}
 \definecolor{darkscarlet}{rgb}{0.34, 0.01, 0.1}
-\definecolor{dodgerblue}{rgb}{0.12, 0.56, 1.0}
-\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{myblue}{rgb}{0.0, 0.43, 0.59}
 
-\newcommand{\headline}[1]{\Large \textcolor{midnightblue}{#1}}
+\newcommand{\headline}[1]{\Large \textcolor{myblue}{#1}}
 
-\newcommand{\skillcolor}{dodgerblue}
+\newcommand{\skillcolor}{myblue}
 
 \newcommand{\skillbar}[2]{%
     \ifthenelse{%
@@ -99,7 +103,7 @@
         }%
     }
 
-\newcommand{\accomplishment}[1]{{\hspace*{-9pt}\textcolor{dodgerblue}{$\bullet$}}\hspace*{4pt}#1}
+\newcommand{\accomplishment}[1]{{\hspace*{-9pt}\textcolor{myblue}{$\bullet$}}\hspace*{4pt}\linespread{1.1}\footnotesize#1}
 
 %\usepackage{blindtext}
 
@@ -113,9 +117,9 @@
 %\fontfamily{verdana}
 \begin{minipage}[t]{0.5\linewidth}
 \vspace{-3.85cm}
-{\Huge Rógvi Dávid Arge }\\
+{\Huge \textcolor{myblue}{Rógvi Dávid Arge} }\\
 
-{\Large Data Science \& Optimization Consultant}
+{\Large \mbox{Data Science \& Optimization Consultant}}
 \vspace{0.3cm}
 
 Phone: +45 5042 5002
@@ -127,7 +131,7 @@ E-mail: argeinnovations@gmail.com
 LinkedIn: \url{http://dk.linkedin.com/in/rogvidarge/en}
 
 \vspace{0.1cm}
-GitHub: \url{https://github.com/rogvid}\\
+GitHub: \url{https://github.com/rogvid} \\
 %Portfolio: \url{https://rogvid.github.io}
 \vspace{-1.6cm}
 \end{minipage}\hspace{0.1cm}
@@ -135,8 +139,8 @@ GitHub: \url{https://github.com/rogvid}\\
     \includegraphics[width=0.7\columnwidth]{workpicture.png}
 \end{minipage}
 
-\vspace{0.3cm}
-\hrule
+\vspace{0.9cm}
+\hrule height 0.4mm
 \vspace{0.5cm}
 {\headline{SUMMARY}}\\
 Data Science Consultant with 3+ years experience in agile project development and a passion for machine learning and optimization. Vast experience in data wrangling, exploratory data analysis, machine learning and data visualization and applying these skills to generate corporate wide improvements. Expert at involving- and making the business take ownership of projects.\\
@@ -154,33 +158,33 @@ Data Science Consultant with 3+ years experience in agile project development an
             \accomplishment{Scoped, developed, and deployed an optimization algorightm for transport operations}\\%
             \accomplishment{Deployed dockerized Flask APIs and Frontends to DFDS Kubernetes cluster}%
         }{}
-    \textbf{ATP=} $|$ Data Scientist \hfill \textit{Feb. 2017 - Dec. 2018} \\
+    \normalsize \textbf{ATP=} $|$ Data Scientist \hfill \textit{Feb. 2017 - Dec. 2018} \\
     \accomplishment{Developed database monitoring system essential for our day to day work. We never missed a prediction because of database downtime since then}\\
     \accomplishment{Built machine learning model for finding citizens who reported false addresses. Allowed us to find people with complex fraud patterns}\\
     \accomplishment{Developed multiple expert systems designed to capture specific types of fraudulent behaviour}\\
     %\textbf{ArgeX} $|$ Owner \& Developer \hfill \textit{Nov. 2015 -} \\
     %Develop and help design VBA macros to analyze and automize language translation\\
     \\
-    \textbf{ConWX} $|$ Programmer \& Data Analyst \hfill \textit{Apr. 2015 - Feb. 2017} \\
+    \normalsize \textbf{ConWX} $|$ Programmer \& Data Analyst \hfill \textit{Apr. 2015 - Feb. 2017} \\
     \accomplishment{Discovered and validated a way to improve forecasting for our clients by 10-25\% vastly increasing client profit per month}\\
     \accomplishment{Designed and developed a monitoring system essential for forecast quality assurance and improvement}\\
     %\textbf{ArgeX} $|$ Owner \& Developer \hfill \textit{Nov. 2015 -} \\
     %Develop and help design VBA macros to analyze and automize language translation\\
-    \newprojects{Udacity Data Analyst Nanodegree Project \\ Explore and Summarize Data \hfill \textmd{\textit{Feb. 2016}}}{Scraped \textcolor{black}{\url{Boliga.dk}} and income statistics for people in Copenhagen. EDA showed an explosive increase in appartment prices around 500\%, as well as the effects of the economic crisis on declining size of raises.}{Python, R, MongoDB, EDA, Data Wrangling}
+    \newprojects{\normalsize{Udacity Data Analyst Nanodegree Project \\ Explore and Summarize Data \hfill \textmd{\textit{Feb. 2016}}}}{Scraped \textcolor{black}{\url{Boliga.dk}} and income statistics for people in Copenhagen. EDA showed an explosive increase in appartment prices around 500\%, as well as the effects of the economic crisis on declining size of raises.}{Python, R, MongoDB, EDA, Data Wrangling}
     \\
 
     {\headline{EDUCATION \& CERTIFICATION}}\\
     \vspace{-8pt}\\
     \textline{Coursera}{Deep learning}{2018}\\
-    Deep Learning Specialization by Andrew Ng on the MOOC Coursera\\
+    Deep Learning Specialization by Andrew Ng on the MOOC Coursera.\\
     \\
-    \textline{Udacity}{Data Analyst Nanodegree}{2015 - 2017}
+    \textline{Udacity}{Data Analyst Nanodegree}{2015 - 2017} \\
     Project based online education teaching essential knowledge and skills for data scientists.\\
     \\
     \textline{Copenhagen University}{MSc in Physics}{2012 - 2015}\\
     Focus on computational physics, machine learning and mathematical modeling.\\
 
-  \end{minipage}\hfill\vline\hfill
+  \end{minipage}\hfill\vline width 0.4mm\hfill
 \begin{minipage}[t]{0.28\linewidth}
     {\headline{TECHNICAL SKILLS}}\\
     \vspace{-8pt}\\
