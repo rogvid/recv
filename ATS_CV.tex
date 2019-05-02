@@ -1,0 +1,282 @@
+\documentclass[12pt,a4paper]{article}
+%\usepackage[cm]{fullpage}
+\usepackage[danish]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[margin=1.1cm]{geometry}
+\usepackage[top=2.0cm, bottom=1.5cm, left=1.5cm, right=2.0cm]{geometry}
+%\usepackage[official]{eurosym}
+%\usepackage{eso-pic}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{graphicx}%,epic,eepic}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{latexsym}
+%\usepackage[usenames,dvipsnames]{color}
+\usepackage{float}
+\usepackage{calc}
+\usepackage{pdfpages}
+\usepackage{epstopdf}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{nameref}
+\usepackage{setspace}
+% \usepackage{slashbox}
+\usepackage{color, colortbl}
+\usepackage{tcolorbox}
+\usepackage{fancybox}
+\usepackage{microtype}
+\usepackage{vwcol}
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{xparse}
+\usepackage{changepage}
+\input{glyphtounicode}
+
+\pdfgentounicode=1
+
+\ExplSyntaxOn
+\NewDocumentCommand{\makebullet}{ m }
+ {
+  \clist_map_inline:nn { #1 } { $\bullet$ \hspace{0.1cm} ##1 \hspace{0.2cm} }
+ }
+\ExplSyntaxOff
+
+\definecolor{MyColor}{rgb}{0.83,0.87,0.94}
+\makeatletter\newenvironment{Colorbox}{%
+   \begin{lrbox}{\@tempboxa}\begin{minipage}{\columnwidth}}{\end{minipage}\end{lrbox}%
+   \colorbox{MyColor}{\usebox{\@tempboxa}}
+}\makeatother
+
+\newlength{\mylen}
+\newcommand{\myflexbox}[2][7em]{%
+  \settowidth{\mylen}{#2}%
+    \makebox[#1][l]{#2}%
+}
+
+\newcommand{\dunderline}[1]{\underline{\underline{#1}}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\bcb}{\begin{Colorbox}}
+\newcommand{\ecb}{\end{Colorbox}}
+\newcommand{\Repeat}[2]{% \repeat already defined
+    \foreach \n in {1,...,#1}{#2}
+}
+\newcommand{\newprojects}[3]{\\\textbf{#1}\\#2\\ \makebullet{#3}\\}
+\newcommand{\textline}[3]{\normalsize{\textbf{#1} | #2 \hfill \textit{#3}}}
+
+%\newcommand{\proficiencysquare}[2]{\tikz \node (rect) at (0,0) [draw,minimum width=(\columnwidth - \widthof{#1})/20,minimum height=4pt,fill=#2!100] {};\hspace{2pt}}
+\newcommand{\proficiencysquare}[3]{\tikz \node (rect) at (0,0) [draw=none,minimum width=(\columnwidth - #1)/20,minimum height=4pt,fill=#2!40] {};\hspace{#3}}
+
+\newcommand{\proficiencycircle}[3]{\tikz \node at (0,0) [circle,inner sep=0pt,minimum width=(\columnwidth - #1)/20,fill=#2] {};\hspace{#3}}
+
+\newcommand{\proficiency}[3]{#1\Repeat{#2}{\proficiencysquare{#1}{#3}}}
+
+\newcommand{\proficientsquare}[5]{\myflexbox{#1}\Repeat{#2}{\proficiencysquare{#3}{#4}{#5}}}
+
+\newcommand{\proficientcircle}[5]{\myflexbox{#1}\Repeat{#2}{\proficiencycircle{#3}{#4}{#5}}}
+
+%\usepackage[defaultfam,light,tabular,lining]{montserrat} %% Option 'defaultfam'
+%% only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}} % Only if the base font of the document is to be sans serif
+
+\definecolor{carmine}{rgb}{0.59, 0.0, 0.09}
+\definecolor{coralred}{rgb}{1.0, 0.25, 0.25}
+\definecolor{darkscarlet}{rgb}{0.34, 0.01, 0.1}
+\definecolor{myblue}{rgb}{0.0, 0.43, 0.59}
+
+\newcommand{\headline}[1]{\Large \textcolor{myblue}{#1}}
+
+\newcommand{\skillcolor}{myblue}
+
+\newcommand{\skillbar}[2]{%
+    \ifthenelse{%
+        \equal{#2}{0}%{%
+    }{\Repeat{5}{\proficiencycircle{0.5pt}{\skillcolor}{2.0pt}}}%
+    {\Repeat{#1}{%
+                \proficiencycircle{0.5pt}{\skillcolor}{2.0pt}%
+            }\hspace{-3pt}\Repeat{#2}{%
+                \proficiencycircle{0.5pt}{lightgray}{2.0pt}%
+            }%
+        }%
+    }
+
+\newcommand{\accomplishment}[1]{{\hspace*{-9pt}\textcolor{myblue}{$\bullet$}}\hspace*{4pt}\linespread{1.1}#1}
+
+\newtcbox{\competency}{nobeforeafter, before upper=\strut,colframe=white,colback=black!8!white,boxrule=0.5pt,arc=4pt,boxsep=0pt,left=3pt,right=3pt,top=3pt,bottom=3pt,tcbox raise base}
+\newtcbox{\coloredcompetency}{nobeforeafter, before upper=\strut,colframe=white,colback=coralred,boxrule=0.5pt,arc=4pt,boxsep=0pt,left=3pt,right=3pt,top=3pt,bottom=3pt,tcbox raise base}
+\newcommand{\specialcompetency}[1]{\coloredcompetency{{\color{white}\textbf{#1}}}}
+
+%\usepackage{blindtext}
+
+\linespread{1.0}
+
+\begin{document}
+\pagenumbering{gobble}
+%\fontfamily{cmss}
+\parindent0em
+\fontfamily{qag}
+%\fontfamily{verdana}
+\begin{center}
+{\Huge \textcolor{myblue}{\textbf{Rogvi David Arge}} }\\
+\vspace{0.2cm}
+
+{\Large \mbox{Data Science \& Optimization Consultant}}
+\end{center}
+
+\vspace{0.1cm}
+\footnotesize
++45 5042 5002 \hspace{0.5cm} argeinnovations@gmail.com \hspace{0.5cm} \url{linkedin.com/in/rogvidarge/en} \hspace{0.5cm} \url{github.com/rogvid} \\
+%\includegraphics[width=0.7\columnwidth]{workpicture.png}
+\normalsize
+\vspace{0.0cm}\\
+{\headline{SUMMARY}}
+\vspace{0.2cm}
+{\color{myblue}\hrule height 0.3mm}
+\vspace{0.2cm}
+Data Scientist with more than 4 years of experience in agile project development and a passion for deep learning, predictive analytics and optimization. Vast experience in data wrangling, exploratory data analysis, machine learning and data visualization and applying these skills to generate corporate wide improvements.\\
+\vspace{0.3cm}
+\\
+{\headline{KEY COMPENTENCIES}}
+\vspace{0.2cm}
+{\color{myblue}\hrule height 0.3mm}
+\vspace{0.2cm}
+
+\competency{Python}
+\competency{Machine Learning}
+\competency{Data Science}
+\competency{Deep Learning}
+\competency{Data Visualization}
+\competency{AWS}
+\competency{Problem Solving}
+\competency{Critical Thinking}
+\competency{Communication}
+\competency{Data Analysis}
+\competency{SQL}
+\competency{TensorFlow}
+\competency{Keras}
+\competency{NoSQL}
+\competency{NLP}
+\competency{Optimization}
+\competency{API}
+\competency{Flask}
+\competency{CI}
+\competency{CD}
+\competency{Statistical Modeling}
+\competency{Analytics}
+\competency{Git}
+\competency{Docker}
+\competency{Operations Research}
+\competency{D3}
+\competency{JavaScript}
+\competency{HTML}
+\competency{CSS}
+\competency{C\#}
+\competency{Azure}
+\competency{SCRUM}
+\\
+\vspace{0.3cm}
+\\
+{\headline{EMPLOYMENT HISTORY}}
+\vspace{0.2cm}
+{\color{myblue}\hrule height 0.3mm}
+\vspace{0.2cm}
+
+\textline{Owner \& Data Science Consultant}{Arge Innovations}{Dec. 2018 - Present}\\
+Development of data science, machine learning, deep learning, optimization, and analytics solutions for businesses
+\begin{itemize}[label=\textcolor{myblue}{\textbullet}]
+    \vspace{-0.3cm}
+    \item Spearheaded a paradigmshift of the transportation \& logistics industry in two successful data science projects over a period of 5 months
+\end{itemize}
+
+\textline{Freelance Data Science Consultant}{DFDS A/S}{Dec. 2018 - May. 2019}\\
+Spearheaded a paradigmshift of the transportation \& logistics industry
+\begin{itemize}[label=\textcolor{myblue}{\textbullet}]
+    \vspace{-0.3cm}
+    \item Reduced RMSE of prediction algorithm by 20\% by helping to implement a number of scalable machine learning models
+    \vspace{-0.3cm}
+    \item Enabled a completely new transportation planning methodology by implementing dynamic optimization tool that visualized optimal plan in real time
+\end{itemize}
+
+\textline{Data Scientist}{ATP}{Feb. 2017 - Dec. 2018}\\
+Matured and overhauled the fraud detection efforts within social benefits using various data science approaches
+\begin{itemize}[label=\textcolor{myblue}{\textbullet}]
+    \vspace{-0.3cm}
+    \item Reduced payments of social benefits to fraudulent people by more than 10 mio. using expert
+systems
+    \vspace{-0.3cm}
+    \item Enabled investigation of people with complex fraud patterns by implementing a hybrid machine
+learning-expert system model
+    \vspace{-0.3cm}
+    \item Decreased prediction failures caused by server downtime by building a Flask based ser-
+ver/database monitoring system
+\end{itemize}
+
+\textline{Data Analyst \& Programmer}{ConWX}{Apr. 2015 - Feb. 2017}\\
+Used analytics and machine learning to increase client revenue and implemented software solutions to distribute these models to customers
+\begin{itemize}[label=\textcolor{myblue}{\textbullet}]
+    \vspace{-0.3cm}
+    \item Greatly increased monthly revenue of one of our largest clients by improving our forecasts by 18\%
+    \vspace{-0.3cm}
+    \item Enabled forecast evaluations by leading the design, development, and implementation of a forecast monitoring system
+learning-expert system model
+    \vspace{-0.3cm}
+    \item Decreased prediction failures caused by server downtime by building a Flask based ser-
+ver/database monitoring system
+\end{itemize}
+
+\textline{Student Assistant}{Ramboll}{Mar. 2011 - Apr. 2015}\\
+Developed excel macros in VBA for various departments
+\begin{itemize}[label=\textcolor{myblue}{\textbullet}]
+    \vspace{-0.3cm}
+    \item Reduced walltime of building energy calculation by porting the existing excel solution to C++
+    \vspace{-0.3cm}
+    \item Enabled simulation of various energy dependent building parameters by creating an integration between excel and BE10
+\end{itemize}
+
+{\headline{EDUCATION HISTORY}}
+\vspace{0.2cm}
+{\color{myblue}\hrule height 0.3mm}
+\vspace{0.2cm}
+\textline{\normalsize{M.Sc. in Physics}}{University of Copenhagen}{\normalsize{Aug. 2012 - May. 2015}}\\
+Focused my studies on applied mathematics, computational physics, machine learning, statistics and mathematical modeling. Wrote my thesis \textit{"Inflammation of the Central Nervous System - Modeling Multiple Sclerosis as a Motile Excitable Medium"} under Professor Mogens Høgh Jensen\\
+\\
+\textline{\normalsize{B.Sc. in Physics}}{University of Copenhagen}{\normalsize{Aug. 2009 - Jun. 2012}}\\
+Focused my studies on quantum optics, solid stats physics, laser physics, optics, and experimental physics\\
+
+{\headline{CERTIFICATES}}
+\vspace{0.2cm}
+{\color{myblue}\hrule height 0.3mm}
+\vspace{0.2cm}
+    \textline{\normalsize{Applied Social Network Analysis}}{Coursera}{\normalsize{Feb. 2018}}\\
+    Python based course on Social Network Analysis, developing essential knowledge in the field of SNA.
+    \\
+
+    \textline{\normalsize{Deep Learning Specialization}}{Coursera}{\normalsize{Sep. 2017 - Feb. 2018}}\\
+    Development of deep learning models in Tensorflow \& Keras. Specialization taught by Andrew Ng on Coursera. Notable projects in Image Recognition, Deep Learning, Transfer Learning, Convolutional Neural Networks, Recurrent Neural Networks, Speech Detection, Speec Recognition, Generative Adversarial Networks, and Trigger Word Detection\\
+    \\
+    \textline{\normalsize{Data Analyst Nanodegree}}{Udacity}{\normalsize{Jul. 2015 - May 2017}} \\
+    Project based courses teaching essential knowledge and skills for data scientists. Notable projects:
+\begin{itemize}[label=\textcolor{myblue}{\textbullet}]
+    \vspace{-0.3cm}
+    \item Copenhagen apartment price evolution. Map visualizing the evolution of apartment prices in greater copenhagen
+    \vspace{-0.3cm}
+    \item Investigating fraud in Enron financial data and email corpus. 
+\end{itemize}
+
+{\headline{LANGUAGES}}
+\vspace{0.2cm}
+{\color{myblue}\hrule height 0.3mm}
+\vspace{0.2cm}
+\textbf{Faroese, Danish} \hfill Native Language\\
+\textbf{English} \hfill Professional Proficiency\\
+\textbf{Swedish, Norwegian, French, German} \hfill Elementary Proficiency
+
+\end{document}
