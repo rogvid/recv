@@ -3,7 +3,7 @@
 \usepackage[danish]{babel}
 \usepackage[utf8]{inputenc}
 %\usepackage[margin=1.1cm]{geometry}
-\usepackage[top=2.0cm, bottom=1.5cm, left=1.5cm, right=2.0cm]{geometry}
+\usepackage[top=3.0cm, bottom=3.0cm, left=2.0cm, right=2.0cm]{geometry}
 %\usepackage[official]{eurosym}
 %\usepackage{eso-pic}
 \usepackage{tikz}
@@ -86,6 +86,7 @@
 %% only if the base font of the document is to be sans serif
 \usepackage[T1]{fontenc}
 \renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}} % Only if the base font of the document is to be sans serif
+%% only if the base font of the document is to be sans serif
 
 \definecolor{carmine}{rgb}{0.59, 0.0, 0.09}
 \definecolor{coralred}{rgb}{1.0, 0.25, 0.25}
@@ -125,23 +126,40 @@
 \fontfamily{qag}
 %\fontfamily{verdana}
 \begin{center}
-{\Huge \textcolor{myblue}{\textbf{Rogvi David Arge}} }\\
-\vspace{0.2cm}
+  {\Huge \textcolor{myblue}{\textbf{Rogvi David Arge}} }\\
+  \vspace{0.2cm}
 
-{\Large \mbox{Data Science \& Optimization Consultant}}
+  {\Large \mbox{Head of Data Science}}
 \end{center}
 
 \vspace{0.1cm}
 \footnotesize
-+45 5042 5002 \hspace{0.5cm} argeinnovations@gmail.com \hspace{0.5cm} \url{linkedin.com/in/rogvidarge/en} \hspace{0.5cm} \url{github.com/rogvid} \\
+$\begin{array}{l}
+    \includegraphics{birthday.png}
+  \end{array}$
+26-07-1988 \hfill
+$\begin{array}{l}
+    \includegraphics{phone.png}
+  \end{array}$
++298 216 017 \hfill
+$\begin{array}{l}
+    \includegraphics{linkedin.png}
+  \end{array}$
+\url{linkedin.com/in/rogvidarge/en} \hfill
+$\begin{array}{l}
+    \includegraphics{git.png}
+  \end{array}$
+\url{github.com/rogvid} \\
+
+\normalsize
 %\includegraphics[width=0.7\columnwidth]{workpicture.png}
 \normalsize
-\vspace{0.0cm}\\
+\vspace{0.0cm}
 {\headline{SUMMARY}}
 \vspace{0.2cm}
 {\color{myblue}\hrule height 0.3mm}
 \vspace{0.2cm}
-Data Scientist with more than 4 years of experience in agile project development and a passion for deep learning, predictive analytics and optimization. Vast experience in data wrangling, exploratory data analysis, machine learning and data visualization and applying these skills to generate corporate wide improvements.\\
+AI engineering leader and hands-on builder with a MSc in computational physics and a passion for creating AI products that improve real life. I combine deep knowledge of machine learning and Python development with practical experience building workflow-based and chat-based AI systems. Recently focused on generative AI, including LLM integration, prompt engineering, and system-level design of AI pipelines. Experienced in both developing novel solutions and leading teams to deliver them at scale.
 \vspace{0.3cm}
 \\
 {\headline{KEY COMPENTENCIES}}
@@ -154,88 +172,211 @@ Data Scientist with more than 4 years of experience in agile project development
 \competency{Data Science}
 \competency{Deep Learning}
 \competency{Data Visualization}
+\competency{CI}
+\competency{CD}
+\competency{Data Orchestration}
+\competency{Data Modelling}
 \competency{AWS}
 \competency{Problem Solving}
 \competency{Critical Thinking}
 \competency{Communication}
 \competency{Data Analysis}
 \competency{SQL}
-\competency{TensorFlow}
-\competency{Keras}
-\competency{NoSQL}
-\competency{NLP}
-\competency{Optimization}
-\competency{API}
-\competency{Flask}
-\competency{CI}
-\competency{CD}
-\competency{Statistical Modeling}
 \competency{Analytics}
-\competency{Git}
+\competency{Computer Vision}
+\competency{CVAT}
+\competency{FastAPI}
 \competency{Docker}
 \competency{Operations Research}
-\competency{D3}
 \competency{JavaScript}
 \competency{HTML}
 \competency{CSS}
 \competency{C\#}
+\competency{Django}
+\competency{Optimization}
+\competency{Data Engineering}
+\competency{Dagster}
+\competency{DBT}
+\competency{Prefect}
+\competency{MLFlow}
 \competency{Azure}
-\competency{SCRUM}
+\competency{PyTorch}
+\competency{Generative AI}
+\competency{Linux}
+\competency{Minio}
+\competency{Ansible}
+\competency{Jenkins}
+\competency{Git}
+\competency{D3}
+\competency{Pydantic}
+\competency{DVC}
+\competency{Hydra}
 \\
 \vspace{0.3cm}
 \\
 {\headline{EMPLOYMENT HISTORY}}
 \vspace{0.2cm}
 {\color{myblue}\hrule height 0.3mm}
+\vspace{0.4cm}
+\textline{Head of Data Science}{Flowtale}{Dec. 2021 - Present}\\
+Responsible for Flowtale data scientists and data science solutions
+\begin{itemize}[label=\textcolor{myblue}{\textbullet}]
+  \item \textbf{Generative AI Application Development} \\
+        Development of generative AI applications for chat and workflow automation \\
+        \textit{\textbf{Tech:} Python, Azure, OpenAI, Gitlab, Docker, FastAPI, Sqlalchemy, PostgreSQL, Pydantic}
+  \item \textbf{Server Provisioning} \\
+        Development of ansible playbooks for provisioning of servers and
+        infrastructure for data science solutions. \\
+        \textit{\textbf{Tech:} Ansible, Docker, Jenkins, Bitbucket}
+  \item \textbf{MLOps Infrastructure} \\
+        Building inhouse MLOps infrastructure with open-source tools. \\
+        \textit{\textbf{Tech:} Hydra, MLFlow, DVC, Minio, Docker, PostgreSQL, HAProxy, Jenkins, CVAT}
+  \item \textbf{Sonar Analytics Dashboard} \\
+        Development of dashboard for analyzing sonar data \\
+        \textit{\textbf{Tech:} Python, Panels, Dask}
+  \item \textbf{Deep learning event classification} \\
+        Development of deep learning model for timeseries classification of events \\
+        \textit{\textbf{Tech:} Python, PyTorch, Panels, Dask}
+  \item \textbf{Labeling tool} \\
+        Development of labeling tool for labeling of custom data types \\
+        \textit{\textbf{Tech:} Python, Panels, Sqlalchemy, Dask}
+  \item \textbf{Data maturity consulting} \\
+        Leading the development of roadmap and tasks for client data maturity
+        improvement \\
+        \textit{\textbf{Tech:} Python, Panels, Sqlalchemy, Dask}
+  \item \textbf{Hiring Manager} \\
+        Responsible for hiring and onboarding of data scientists and data engineers \\
+        \textit{\textbf{Tools:} Google Colab, Google Drive, Google Docs, Calendly, castHR, Obsidian}
+  \item \textbf{Team Leadership} \\
+        Leading the data science team in Flowtale, including mentoring and
+        coaching of data scientists and data engineers \\
+\end{itemize}
+
+\begin{center}
+  {\color{gray}\rule{0.8\textwidth}{.2pt}}
+\end{center}
+\vspace{0.2cm}
+
+\textline{Senior Data Scientist}{Flowtale}{Sep. 2019 - Dec. 2021}\\
+Development of data science, machine learning, deep learning, optimization, and
+analytics solutions for businesses
+\begin{itemize}[label=\textcolor{myblue}{\textbullet}]
+  \item \textbf{Sonar Outlier Detector} \\
+        Outlier detection system developed and deployed on sonar system. \\
+        \textit{\textbf{Tech:} PostgreSQL, Docker, Python, ONNX, PyTorch, TensorRT, Panels}
+  \item \textbf{Project Management Solution} \\
+        Project Management Solution for Global Engineering Consultancy with
+        accompanying PowerBI dashboard \\
+        \textit{\textbf{Tech:} MSSQL, Docker, NGINX, Django, Gitlab, CI/CD, PowerBI,
+          Python, JavaScript}
+  \item \textbf{Waste Management Analytics} \\
+        Analytics solution for smarter municipal wastemanagement\\
+        \textit{\textbf{Tech:} PostgreSQL, Docker, Python, ML, Gitlab, CI/CD}
+  \item \textbf{Product Quality Forecasting} \\
+        Building data science solution architecture and development and training
+        of product quality forecasting model. \\
+        \textit{\textbf{Tech:} Azure, ARM, PostgreSQL, MSSQL, Docker, Python, ML,
+          Gitlab, Ci/CD}
+  \item \textbf{IoT Smarthome}\\
+        Designing, developing, and deployment of smart home IoT solution for telco. \\
+        \textit{\textbf{Tech:} Azure, ARM, PostgreSQL, Docker, Python, IoT, Django,
+          React, Gitlab, CI/CD}
+  \item \textbf{Cashflow Forecasting}\\
+        Development of cashflow forecasting R package for global
+        mining company \\
+        \textit{\textbf{Tech:} R, Docker, ML, SQL}
+\end{itemize}
+
+\begin{center}
+  {\color{gray}\rule{0.8\textwidth}{.2pt}}
+\end{center}
 \vspace{0.2cm}
 
 \textline{Owner \& Data Science Consultant}{Arge Innovations}{Dec. 2018 - Present}\\
 Development of data science, machine learning, deep learning, optimization, and analytics solutions for businesses
 \begin{itemize}[label=\textcolor{myblue}{\textbullet}]
-    \vspace{-0.3cm}
-    \item Spearheaded a paradigmshift of the transportation \& logistics industry in two successful data science projects over a period of 5 months
+  \item \textbf{2018-2019 DFDS A/S} \\
+        Spearheaded a paradigmshift of the transportation \& logistics industry, in
+        two projects within machine learning, operations research and change management.
+  \item \textbf{2015-2016 Atalanta Translation Services} \\
+        Development of VBA based data automation for dutch translation service
 \end{itemize}
+
+\begin{center}
+  {\color{gray}\rule{0.8\textwidth}{.2pt}}
+\end{center}
+\vspace{0.2cm}
 
 \textline{Freelance Data Science Consultant}{DFDS A/S}{Dec. 2018 - May. 2019}\\
 Spearheaded a paradigmshift of the transportation \& logistics industry
 \begin{itemize}[label=\textcolor{myblue}{\textbullet}]
-    \vspace{-0.3cm}
-    \item Reduced RMSE of prediction algorithm by 20\% by helping to implement a number of scalable machine learning models
-    \vspace{-0.3cm}
-    \item Enabled a completely new transportation planning methodology by implementing dynamic optimization tool that visualized optimal plan in real time
+  \item \textbf{Arrival Time Prediction} \\
+        Significantly reduced RMSE of arrival time predictions by developing and deploying a timeseries forecasting model used by
+        DFDS in a key product \\
+        \textbf{Tech:} \textit{Python, ML, Docker, Flask, Kubernetes, Azure
+          DevOps}
+  \item \textbf{Stowage Optimization} \\
+        Designed, developed, and deployed end-to-end python based operations research algorithm
+        with accompanying Flask API, and Flask frontend with JavaScript for
+        handling dynamic updates of optimal plans \\
+        \textbf{Tech:} \textit{Python, Docker, REST, ortools, SQL, JavaScript,
+          Kubernetes, Azure DevOps}
 \end{itemize}
 
+\begin{center}
+  {\color{gray}\rule{0.8\textwidth}{.2pt}}
+\end{center}
+\vspace{0.2cm}
+
 \textline{Data Scientist}{ATP}{Feb. 2017 - Dec. 2018}\\
-Matured and overhauled the fraud detection efforts within social benefits using various data science approaches
+Matured and overhauled the fraud detection efforts within social benefits using
+various data science and data engineering approaches
 \begin{itemize}[label=\textcolor{myblue}{\textbullet}]
-    \vspace{-0.3cm}
-    \item Reduced payments of social benefits to fraudulent people by more than 10 mio. using expert
-systems
-    \vspace{-0.3cm}
-    \item Enabled investigation of people with complex fraud patterns by implementing a hybrid machine
-learning-expert system model
-    \vspace{-0.3cm}
+  \item Reduced payments of social benefits to fraudulent people by more than 10 mio.
+        using expert systems
+  \item Enabled investigation of people with complex fraud patterns by implementing a
+        hybrid machine learning-expert system model
+  \item Development of data models, tables and schemas for improved execution of
+        dataflow in Microsoft SQL Server
+  \item Used PySpark to improve calculation speed of clustergeneration on relationship
+        graphs
 \end{itemize}
+\textit{\textbf{Tech:} SQL, Data Modelling, Spark, Python, ML, Docker, Azure
+  DevOps, Git}
+
+\begin{center}
+  {\color{gray}\rule{0.8\textwidth}{.2pt}}
+\end{center}
+\vspace{0.2cm}
 
 \vspace{0.5cm}
 \textline{Data Analyst \& Programmer}{ConWX}{Apr. 2015 - Feb. 2017}\\
 Used analytics and machine learning to increase client revenue and implemented software solutions to distribute these models to customers
 \begin{itemize}[label=\textcolor{myblue}{\textbullet}]
-    \vspace{-0.3cm}
-    \item Greatly increased monthly revenue of one of our largest clients by improving our forecasts by 18\%
-    \vspace{-0.3cm}
-    \item Enabled forecast evaluations by leading the design, development, and implementation of a forecast monitoring system
-    \vspace{-0.3cm}
+  \item Greatly increased monthly revenue of one of our largest clients by improving
+        our forecasts by 18\%
+  \item Enabled forecast evaluations by leading the design, development, and
+        implementation of a forecast monitoring system
 \end{itemize}
+\textit{\textbf{Tech:} Git, C\#, Python, ML, DL, PHP, .NET, Flask, Timeseries
+  Forecasting, Signal Processing}
+
+\begin{center}
+  {\color{gray}\rule{0.8\textwidth}{.2pt}}
+\end{center}
+\vspace{0.2cm}
 
 \textline{Student Assistant}{Ramboll}{Mar. 2011 - Apr. 2015}\\
 Developed excel macros in VBA for various departments
 \begin{itemize}[label=\textcolor{myblue}{\textbullet}]
-    \vspace{-0.3cm}
-    \item Reduced walltime of building energy calculation by porting the existing excel solution to C++
-    \vspace{-0.3cm}
-    \item Enabled simulation of various energy dependent building parameters by creating an integration between excel and BE10
+  \item Reduced walltime of building energy calculation by porting the existing excel
+        solution to C++
+  \item Enabled simulation of various energy dependent building parameters by creating
+        an integration between excel and BE10
 \end{itemize}
+\textit{\textbf{Tech:} VBA, Python, C++}
+
+\vspace{0.6cm}
 
 {\headline{EDUCATION HISTORY}}
 \vspace{0.2cm}
@@ -251,21 +392,27 @@ Focused my studies on quantum optics, solid stats physics, laser physics, optics
 \vspace{0.2cm}
 {\color{myblue}\hrule height 0.3mm}
 \vspace{0.2cm}
-    \textline{\normalsize{Applied Social Network Analysis}}{Coursera}{\normalsize{Feb. 2018}}\\
-    Python based course on Social Network Analysis, developing essential knowledge in the field of SNA.
-    \\
+\textline{\normalsize{AWS Cloud Practioner}}{AWS}{\normalsize{Nov. 2019}}\\
+Basic certification in Amazon Web Services
+\\
 
-    \textline{\normalsize{Deep Learning Specialization}}{Coursera}{\normalsize{Sep. 2017 - Feb. 2018}}\\
-    Development of deep learning models in Tensorflow \& Keras. Specialization taught by Andrew Ng on Coursera. Notable projects in Image Recognition, Deep Learning, Transfer Learning, Convolutional Neural Networks, Recurrent Neural Networks, Speech Detection, Speec Recognition, Generative Adversarial Networks, and Trigger Word Detection\\
-    \\
-    \textline{\normalsize{Data Analyst Nanodegree}}{Udacity}{\normalsize{Jul. 2015 - May 2017}} \\
-    Project based courses teaching essential knowledge and skills for data scientists. Notable projects:
+\textline{\normalsize{Applied Social Network Analysis}}{Coursera}{\normalsize{Feb. 2018}}\\
+Python based course on Social Network Analysis, developing essential knowledge in the field of SNA.
+\\
+
+\textline{\normalsize{Deep Learning Specialization}}{Coursera}{\normalsize{Sep. 2017 - Feb. 2018}}\\
+Development of deep learning models in Tensorflow \& Keras. Specialization taught by Andrew Ng on Coursera. Notable projects in Image Recognition, Deep Learning, Transfer Learning, Convolutional Neural Networks, Recurrent Neural Networks, Speech Detection, Speec Recognition, Generative Adversarial Networks, and Trigger Word Detection\\
+\\
+\textline{\normalsize{Data Analyst Nanodegree}}{Udacity}{\normalsize{Jul. 2015 - May 2017}} \\
+Project based courses teaching essential knowledge and skills for data scientists. Notable projects:
 \begin{itemize}[label=\textcolor{myblue}{\textbullet}]
-    \vspace{-0.3cm}
-    \item Copenhagen apartment price evolution. Map visualizing the evolution of apartment prices in greater copenhagen
-    \vspace{-0.3cm}
-    \item Investigating fraud in Enron financial data and email corpus. 
+  \vspace{-0.3cm}
+  \item Copenhagen apartment price evolution. Map visualizing the evolution of
+        apartment prices in greater copenhagen \vspace{-0.3cm}
+  \item Investigating fraud in Enron financial data and email corpus.
 \end{itemize}
+
+\newpage
 
 {\headline{LANGUAGES}}
 \vspace{0.2cm}

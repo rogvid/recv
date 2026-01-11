@@ -1,0 +1,309 @@
+\documentclass[11pt,a4paper]{article}
+%\usepackage[cm]{fullpage}
+\usepackage[danish,provide=*]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[margin=1.1cm]{geometry}
+\usepackage[top=1.0cm, bottom=1.0cm, left=1.5cm, right=1.5cm]{geometry}
+%\usepackage[official]{eurosym}
+%\usepackage{eso-pic}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{graphicx}%,epic,eepic}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{latexsym}
+%\usepackage[usenames,dvipsnames]{color}
+\usepackage{float}
+\usepackage{calc}
+\usepackage{pdfpages}
+\usepackage{epstopdf}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{nameref}
+\usepackage{setspace}
+% \usepackage{slashbox}
+\usepackage{color, colortbl}
+\usepackage{microtype}
+\usepackage{tcolorbox}
+\usepackage{vwcol}
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{xparse}
+\usepackage{changepage}
+\input{glyphtounicode}
+
+\pdfgentounicode=1
+
+\ExplSyntaxOn
+\NewDocumentCommand{\makebullet}{ m }
+ {
+  \clist_map_inline:nn { #1 } { $\bullet$ \hspace{0.1cm} ##1 \hspace{0.2cm} }
+ }
+\ExplSyntaxOff
+
+\definecolor{MyColor}{rgb}{0.83,0.87,0.94}
+\makeatletter\newenvironment{Colorbox}{%
+   \begin{lrbox}{\@tempboxa}\begin{minipage}{\columnwidth}}{\end{minipage}\end{lrbox}%
+   \colorbox{MyColor}{\usebox{\@tempboxa}}
+}\makeatother
+
+\newlength{\mylen}
+\newcommand{\myflexbox}[2][7em]{%
+  \settowidth{\mylen}{#2}%
+    \makebox[#1][l]{#2}%
+}
+
+\newcommand{\dunderline}[1]{\underline{\underline{#1}}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\bcb}{\begin{Colorbox}}
+\newcommand{\ecb}{\end{Colorbox}}
+\newcommand{\Repeat}[2]{% \repeat already defined
+    \foreach \n in {1,...,#1}{#2}
+}
+\newcommand{\newprojects}[3]{\\\textbf{#1}\\#2\\ \makebullet{#3}\\}
+\newcommand{\textline}[2]{\textbf{#1} \hfill \textit{#2}}
+
+%\newcommand{\proficiencysquare}[2]{\tikz \node (rect) at (0,0) [draw,minimum width=(\columnwidth - \widthof{#1})/20,minimum height=4pt,fill=#2!100] {};\hspace{2pt}}
+\newcommand{\proficiencysquare}[3]{\tikz \node (rect) at (0,0) [draw=none,minimum width=(\columnwidth - #1)/20,minimum height=4pt,fill=#2!40] {};\hspace{#3}}
+
+\newcommand{\proficiencycircle}[3]{\tikz \node at (0,0) [circle,inner sep=0pt,minimum width=(\columnwidth - #1)/20,fill=#2] {};\hspace{#3}}
+
+\newcommand{\proficiency}[3]{#1\Repeat{#2}{\proficiencysquare{#1}{#3}}}
+
+\newcommand{\proficientsquare}[5]{\myflexbox{#1}\Repeat{#2}{\proficiencysquare{#3}{#4}{#5}}}
+
+\newcommand{\proficientcircle}[5]{\myflexbox{#1}\Repeat{#2}{\proficiencycircle{#3}{#4}{#5}}}
+
+%\usepackage[defaultfam,light,tabular,lining]{montserrat} %% Option 'defaultfam'
+%% only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}} % Only if the base font of the document is to be sans serif
+
+\definecolor{carmine}{rgb}{0.59, 0.0, 0.09}
+\definecolor{coralred}{rgb}{1.0, 0.25, 0.25}
+\definecolor{darkscarlet}{rgb}{0.34, 0.01, 0.1}
+\definecolor{myblue}{rgb}{0.0, 0.43, 0.59}
+
+\newcommand{\headline}[1]{\Large \textcolor{myblue}{#1}}
+
+\newcommand{\skillcolor}{myblue}
+
+\newcommand{\skillbar}[2]{%
+    \ifthenelse{%
+        \equal{#2}{0}%{%
+    }{\Repeat{5}{\proficiencycircle{0.5pt}{\skillcolor}{2.0pt}}}%
+    {\Repeat{#1}{%
+                \proficiencycircle{0.5pt}{\skillcolor}{2.0pt}%
+            }\hspace{-3pt}\Repeat{#2}{%
+                \proficiencycircle{0.5pt}{lightgray}{2.0pt}%
+            }%
+        }%
+    }
+
+\newcommand{\accomplishment}[1]{{\hspace*{-9pt}\textcolor{myblue}{$\bullet$}}\hspace*{4pt}\linespread{1.1}\footnotesize#1}
+
+\newtcbox{\competency}{nobeforeafter, before upper=\strut,colframe=white,colback=black!8!white,boxrule=0.5pt,arc=4pt,boxsep=0pt,left=3pt,right=3pt,top=3pt,bottom=3pt,tcbox raise base}
+\newtcbox{\coloredcompetency}{nobeforeafter, before upper=\strut,colframe=white,colback=coralred,boxrule=0.5pt,arc=4pt,boxsep=0pt,left=3pt,right=3pt,top=3pt,bottom=3pt,tcbox raise base}
+\newcommand{\specialcompetency}[1]{\coloredcompetency{{\color{white}\textbf{#1}}}}
+
+%\usepackage{blindtext}
+
+\linespread{1.0}
+
+\begin{document}
+\pagenumbering{gobble}
+%\fontfamily{cmss}
+\parindent0em
+%\fontfamily{qag}
+%\fontfamily{verdana}
+\begin{center}
+  {\Huge \textcolor{myblue}{\textbf{Rogvi David Arge}} }
+  \vspace{0.2cm}\\
+  {\Large \mbox{Head of Data Science}}
+\end{center}
+
+% {\Huge \textcolor{myblue}{\textbf{Rogvi David Arge}} }
+% \vspace{0.2cm}\\
+% {\Large \mbox{Senior Data Scientist}}
+
+% \begin{tikzpicture}[remember picture,overlay]
+% \node[anchor=north east,yshift=-20.5pt,xshift=-48.0pt]%
+%     at (current page.north east)
+%     {\includegraphics[height=15mm]{flowtale_logo_a5_no_bg.png}};
+% \end{tikzpicture}
+
+\vspace{0.1cm}
+\footnotesize
+$\begin{array}{l}
+    \includegraphics{birthday.png}
+  \end{array}$
+26-07-1988 \hfill
+$\begin{array}{l}
+    \includegraphics{phone.png}
+  \end{array}$
++298 216 017 \hfill
+$\begin{array}{l}
+    \includegraphics{linkedin.png}
+  \end{array}$
+\url{linkedin.com/in/rogvidarge/en} \hfill
+$\begin{array}{l}
+    \includegraphics{git.png}
+  \end{array}$
+\url{github.com/rogvid} \\
+
+\normalsize
+
+\vspace{0.2cm}
+{\headline{SUMMARY}}
+\vspace{0.2cm}
+{\color{myblue}\hrule height 0.3mm}
+\vspace{0.2cm}
+AI engineering leader and hands-on builder with a MSc in computational physics and a passion for building applications that make a difference. I combine deep knowledge of machine learning and python development with practical experience building workflow-based and chat-based agentic AI applications. Experienced in both developing novel solutions and leading teams to deliver them at scale.
+\vspace{0.3cm}
+\\
+\begin{minipage}[t]{0.66\linewidth}
+  %{\Large \textcolor[HTML]{777777}{EXPERIENCE}}\\
+  {\headline{EXPERIENCE}}
+  \vspace{0.2cm}
+  {\color{myblue}\hrule height 0.3mm}
+  \vspace{0.2cm}
+  {\normalsize{\textbf{Flowtale}}}\\
+  \footnotesize
+  \textline{Head of Data Science}{Sep. 2021 - Present}\\
+  \accomplishment{Designed and built generative AI systems for chat and workflow automation}\\
+  \accomplishment{Created reusable AI components (prompt templates, retrieval pipelines, and structured output validators) to standardize application development across clients.}\\
+  \accomplishment{Collaborated with product and engineering to define technical requirements and deploy ML applications in production (Gitlab CI/CD, Azure, Docker, Ansible).}\\
+  \accomplishment{Led team hiring and mentoring of AI engineers from zero to eight members.}\\
+  \textline{Senior Data Scientist}{Sep. 2019 - Dec. 2021}\\
+  \accomplishment{Built internal MLOps infrastructure with Docker, PostgreSQL, MLFlow, MinIO, Ansible, and Jenkins to streamline model lifecycle management.}\\
+  \accomplishment{Developed AI models for object detection in sonar data and deployed them in near-real-time processing pipelines.}\\
+
+  {\normalsize{\textbf{DFDS A/S}}}\\
+  \footnotesize
+  \textline{Data Science Consultant}{Dec. 2018 - May 2019}\\
+  \accomplishment{Reduced average idle time of trucks by 2 hours by
+    developing and implementing python based timeseries forecasting tool for shipping}\\
+  \accomplishment{Development of optimization algorithm for optimal stowage plans and presented
+    it to planners in an interactive frontend}\\
+  \\
+  {\normalsize{\textbf{ATP}}}\\
+  \textline{Data Scientist}{Feb. 2017 - Dec. 2018}\\
+  \accomplishment{Enabled discovery of fraud perpetrators through social network analysis}\\
+  \accomplishment{Developed social benefits fraud detection systems using supervised and unsupervised machine learning models}\\
+  %\textbf{ArgeX} $|$ Owner \& Developer \hfill \textit{Nov. 2015 -} \\
+  %Develop and help design VBA macros to analyze and automize language translation\\
+  \\
+  {\normalsize{\textbf{ConWX}}}\\
+  \textline{Data Analyst}{Apr. 2015 - Feb. 2017}\\
+  \accomplishment{Increased our largest clients revenue by improving our forecasts by 18\%}\\
+  \accomplishment{Built power forecasting solutions based on
+    near real-time weather data}\\
+  \\
+
+  {\headline{EDUCATION}}
+  \vspace{0.2cm}
+  {\color{myblue}\hrule height 0.3mm}
+  \vspace{0.2cm}
+
+  \textline{M.Sc. in Physics}{University of Copenhagen}{2012 - 2015}\\
+  \footnotesize Focus on computational physics, machine learning and mathematical modeling.\\
+  \\
+  \textline{B.Sc. in Physics}{University of Copenhagen}{2009 - 2012}\\
+  \footnotesize Focus on laser physics, optics, and quantum mechanics.\\
+  \\
+
+  {\headline{CERTIFICATIONS}}
+  \vspace{0.2cm}
+  {\color{myblue}\hrule height 0.3mm}
+  \vspace{0.2cm}
+  \textline{Deep Learning Specialization}{Coursera}{2017 - 2018}\\
+  \footnotesize Development of deep learning models in Tensorflow \& Keras.
+  \\
+
+  \textline{Data Analyst Nanodegree}{Udacity}{2015 - 2017} \\
+  \footnotesize Project based courses teaching essential knowledge and skills for data scientists.\\
+\end{minipage}\hfill
+\begin{minipage}[t]{0.28\linewidth}
+
+  {\headline{TECHNICAL SKILLS}}
+  \vspace{0.2cm}
+  {\color{myblue}\hrule height 0.3mm}
+  \vspace{0.2cm}
+  \hspace*{-6pt}\begin{tabular}{l l l}
+    Python             & \hspace{-10pt} \skillbar{5}{0} \\
+    Machine Learning   & \hspace{-10pt} \skillbar{5}{0} \\
+    Linux              & \hspace{-10pt} \skillbar{5}{0} \\
+    Generative AI      & \hspace{-10pt} \skillbar{4}{1} \\
+    Data Visualization & \hspace{-10pt} \skillbar{4}{1} \\
+    Git                & \hspace{-10pt} \skillbar{4}{1} \\
+    SQL                & \hspace{-10pt} \skillbar{4}{1} \\
+    Docker             & \hspace{-10pt} \skillbar{4}{1} \\
+    MLOps              & \hspace{-10pt} \skillbar{4}{1} \\
+    Azure              & \hspace{-10pt} \skillbar{4}{1} \\
+    FastAPI            & \hspace{-10pt} \skillbar{4}{1} \\
+    PyTorch            & \hspace{-10pt} \skillbar{3}{2} \\
+    Ansible            & \hspace{-10pt} \skillbar{3}{2} \\
+    CI/CD              & \hspace{-10pt} \skillbar{3}{2} \\
+  \end{tabular}
+  \\
+  \vspace{0.4cm}
+
+  {\headline{FAVORITE TOOLS}}
+  \vspace{0.2cm}
+  {\color{myblue}\hrule height 0.3mm}
+  \vspace{0.2cm}
+  \competency{Python}
+  \competency{MLFlow}
+  \competency{Cursor}
+  \competency{SQLModels}
+  \competency{Minio}
+  \competency{Git}
+  \competency{Pydantic-AI}
+  \competency{LangGraph}
+  \competency{Linux}
+  \competency{Streamlit}
+  \competency{Docker}
+  \competency{FastAPI}
+  \competency{uv}
+  \competency{PostgreSQL}
+  \\
+  \vspace{0.4cm}
+
+  {\headline{SOFT SKILLS}}\\
+  \vspace{-0.3cm}
+  {\color{myblue}\hrule height 0.3mm}
+  \vspace{0.2cm}
+  \hspace*{-6pt}\begin{tabular}{l l l}
+    Problem Solving                 & \skillbar{5}{0} \\
+    Management                      & \skillbar{5}{0} \\
+    Team Leadership                 & \skillbar{5}{0} \\
+    Communication                   & \skillbar{5}{0} \\
+    Critical Thinking \hspace{-4pt} & \skillbar{4}{1} \\
+    Adaptability                    & \skillbar{5}{0} \\
+    Project Planning                & \skillbar{4}{1} \\
+  \end{tabular}
+  \vspace{0.10cm}
+  \\
+
+  {\headline{LANGUAGES}}\\
+  \vspace{-0.3cm}
+  {\color{myblue}\hrule height 0.3mm}
+  \vspace{0.2cm}
+  \hspace*{-6pt}\begin{tabular}{l l l}
+    Faroese   & \hspace{19pt} & \skillbar{5}{0} \\
+    Danish    & \hspace{19pt} & \skillbar{5}{0} \\
+    English   & \hspace{19pt} & \skillbar{5}{0} \\
+    Norwegian & \hspace{7pt}  & \skillbar{3}{2} \\
+    Swedish   & \hspace{7pt}  & \skillbar{3}{2} \\
+    French    & \hspace{7pt}  & \skillbar{2}{3} \\
+  \end{tabular}\\
+  \vspace{-2pt}
+\end{minipage}
+\end{document}
