@@ -1,111 +1,282 @@
-# Quick Start Guide - LaTeX to Typst Migration
+# Quick Start Guide - Resource-Based Typst CV System
 
 ## For AI Agents
 
-Start here for a quick overview of the migration project.
+Start here for a quick overview of the resource-based CV migration project.
 
-## What We're Doing
+## What We're Building
 
-Converting a professional CV from LaTeX to Typst with:
-- ✨ Modern, refreshed styling
-- 🚀 Faster compilation (< 1 second vs 3-5 seconds)
-- 📝 Two variants: Standard CV + ATS-optimized CV
-- 🧩 Modular, maintainable code structure
+A modern, **resource-based CV system** in Typst that enables:
+
+✨ **Separation of Content & Presentation**
+- Each job, degree, certificate stored as individual file
+- Comprehensive metadata for filtering and ranking
+- Reusable across multiple CV variants
+
+🎯 **Job-Specific Tailoring**
+- Generate customized CVs for specific applications
+- Select most relevant experiences automatically
+- Match keywords from job descriptions
+
+⚡ **Fast & Maintainable**
+- Typst compilation < 1 second
+- Update once, affects all CVs using it
+- Easy to add new jobs/education
+
+🤖 **Optional AI Enhancement**
+- Auto-analyze job descriptions
+- Rank resources by relevance
+- Generate optimized configurations
+
+## Architecture
+
+```
+resources/
+  ├── personal-info.typ                    # Your info, skills, languages
+  ├── work/                               # One file per job
+  │   ├── 2018-12-arge-innovations-owner.typ
+  │   ├── 2018-12-dfds-consultant.typ
+  │   └── ...
+  └── education/                          # Degrees, certificates
+      ├── degree-2012-ku-msc-physics.typ
+      ├── certificate-2017-coursera-dl.typ
+      └── ...
+
+templates/
+  ├── cv-common.typ                       # Shared components
+  ├── CV.typ                             # Standard CV template
+  └── ATS_CV.typ                         # ATS-optimized template
+
+config/
+  ├── cv-config.typ                      # Full CV config
+  └── tailored/                          # Job-specific configs
+      └── senior-ds-config.typ
+
+builds/                                   # Generated PDFs
+  ├── full-cv/
+  └── senior-data-scientist/
+
+scripts/
+  ├── build-cv.sh                        # Build script
+  └── tailor-cv.py                       # AI tailoring (optional)
+```
 
 ## Quick Commands
 
 ```bash
-# Compile CVs
-typst compile CV.typ
-typst compile ATS_CV.typ
+# Build full CV with all content
+./scripts/build-cv.sh full-cv
 
-# Watch mode (auto-rebuild)
-typst watch CV.typ
+# Build tailored CV (manual config)
+./scripts/build-cv.sh job-name config/tailored/job-config.typ
 
-# View ticket status
-cat .ticket/000-master-overview.md
+# Build tailored CV (AI-powered)
+./scripts/tailor-cv.py job-name job-description.txt
 ```
 
-## Project Structure
+## Resource File Example
 
-```
-.ticket/
-├── README.md                 # Ticket system overview
-├── 000-master-overview.md    # START HERE - Project plan
-├── 001-extract-content.md    # Content extraction
-├── 002-design-template.md    # Design system
-├── 003-common-functions.md   # Shared components
-├── 004-convert-cv-typ.md     # Standard CV
-├── 005-convert-ats-cv-typ.md # ATS CV
-├── 006-styling-refresh.md    # Modern enhancements
-└── 007-testing-validation.md # Testing & docs
+**Work experience** (`resources/work/2018-12-dfds-consultant.typ`):
+
+```typst
+#let job = (
+  position: "Data Science Consultant",
+  company: "DFDS A/S",
+  start_date: "Dec. 2018",
+  end_date: "May 2019",
+  
+  description: "Short summary for CV",
+  description_long: "Detailed version with context...",
+  
+  accomplishments: (
+    (
+      text: "Reduced RMSE by 20%...",
+      impact: "high",
+      quantifiable: true,
+      tags: ("machine-learning", "python"),
+    ),
+    // More accomplishments...
+  ),
+  
+  technologies: ("Python", "Scikit-learn", "Docker"),
+  tags: ("data-science", "ml", "optimization"),
+  
+  relevance: (
+    "data-science": 10,
+    "ml-engineering": 9,
+  ),
+)
 ```
 
 ## Workflow
 
-1. **Read** `000-master-overview.md` for context
-2. **Start** with ticket 001 (content extraction)
-3. **Follow** tickets sequentially 001 → 007
-4. **Check off** tasks as you complete them
-5. **Create** deliverables specified in each ticket
-6. **Test** thoroughly at each stage
+### 1. Create Resources (One Time)
 
-## Key Files
+Extract content from LaTeX and create resource files:
+- One file per job
+- One file per degree/certificate
+- Personal info file
 
-- `AGENTS.md` - Typst coding standards and guidelines
-- `CV.tex` - Original LaTeX CV (reference)
-- `ATS_CV.tex` - Original ATS CV (reference)
+### 2. Build Full CV
 
-## Dependencies Flow
-
+```bash
+./scripts/build-cv.sh full-cv
+# Output: builds/full-cv/CV.pdf
+#         builds/full-cv/ATS_CV.pdf
 ```
-001 Extract Content
-  ↓
-002 Design System
-  ↓
-003 Common Functions
-  ↓ ↓
-004 CV.typ    005 ATS_CV.typ
-  ↓             ↓
-  └─────┬───────┘
-        ↓
-006 Styling Refresh
-        ↓
-007 Testing & Validation
+
+### 3. Tailor for Specific Job
+
+**Option A: Manual**
+1. Copy `config/cv-config.typ` to `config/tailored/job-name-config.typ`
+2. Edit to select relevant resources
+3. Build: `./scripts/build-cv.sh job-name config/tailored/job-name-config.typ`
+
+**Option B: AI-Assisted**
+```bash
+./scripts/tailor-cv.py senior-ml-engineer job-description.txt
+# Analyzes job, ranks resources, generates config, builds CV
 ```
+
+### 4. Update Content
+
+Add new job:
+```bash
+vim resources/work/2026-01-newco-engineer.typ
+# Fill in comprehensive data
+# Add to relevant configs
+./scripts/build-cv.sh full-cv
+```
+
+## Project Tickets
+
+Read tickets in order:
+
+1. **000-master-overview.md** ⭐ Start here - Full project plan
+2. **001-extract-content.md** - Design resource schema
+3. **002-create-resources.md** - Create all resource files
+4. **003-common-functions.md** - Build shared components
+5. **004-convert-cv-typ.md** - Create standard CV template
+6. **005-convert-ats-cv-typ.md** - Create ATS template
+7. **006-styling-refresh.md** - Apply modern design
+8. **007-testing-validation.md** - Test and document
+9. **008-build-scripts.md** - Create build system
+10. **010-ai-tailoring.md** - AI-powered tailoring (optional)
 
 ## Timeline
 
-- **Tickets 001-002**: 3-4 hours (Planning)
-- **Tickets 003-005**: 5-6 hours (Implementation)
-- **Tickets 006-007**: 3-5 hours (Polish)
-- **Total**: ~11-15 hours
+- **Phase 1** (Foundation): Tickets 001-003 = 5-6 hours
+- **Phase 2** (Templates): Tickets 004-006 = 5-6 hours
+- **Phase 3** (Build & Test): Tickets 007-009 = 3-4 hours
+- **Phase 4** (AI - Optional): Ticket 010 = 3-4 hours
+
+**Total (Core)**: 13-16 hours  
+**Total (with AI)**: 16-20 hours
+
+## Key Benefits
+
+### vs. Single CV File:
+
+**Maintainability** ✅
+- Update one job → affects all CVs
+- No duplication
+- Easy version control
+
+**Tailoring** ✅
+- Filter by tags/relevance
+- Match job requirements
+- Optimize for ATS
+
+**Organization** ✅
+- Clear structure
+- Easy to find content
+- Scalable
+
+**Data Richness** ✅
+- Store everything
+- Filter later
+- Long & short versions
+
+## Example: Tailoring Workflow
+
+```bash
+# 1. Get job description
+curl https://company.com/job/123 > job-desc.txt
+
+# 2. Generate tailored CV with AI
+./scripts/tailor-cv.py senior-ds-techcorp job-desc.txt
+
+# Output:
+# 📄 Parsing job description...
+# 🤖 Analyzing with AI...
+#    Position: Senior Data Scientist
+#    Required skills: Python, ML, Deep Learning...
+# 📊 Ranking resources...
+#    Top: DFDS - Data Science Consultant
+# ⚙️  Generating config...
+# 🔨 Building CV...
+# ✅ Success!
+#    CV: builds/senior-ds-techcorp/CV.pdf
+#    ATS: builds/senior-ds-techcorp/ATS_CV.pdf
+
+# 3. Review and customize
+vim config/tailored/senior-ds-techcorp-config.typ
+
+# 4. Rebuild if needed
+./scripts/build-cv.sh senior-ds-techcorp config/tailored/senior-ds-techcorp-config.typ
+```
+
+## Resource Schema Design
+
+Each resource file has:
+- **Basic info**: Position, company, dates, location
+- **Descriptions**: Short & long versions
+- **Accomplishments**: With impact levels, tags, metrics
+- **Technologies**: Skills/tools used
+- **Tags**: For filtering (e.g., "machine-learning", "python")
+- **Relevance scores**: Ratings for different job types (1-10)
+
+This metadata enables smart filtering and ranking!
 
 ## Success Criteria
 
-✅ Both CVs compile without errors  
-✅ Modern, professional design  
-✅ ATS compatibility verified (>80% score)  
-✅ All content preserved from LaTeX  
-✅ Faster compilation (< 1 second)  
-✅ Complete documentation  
+✅ All content migrated to resources  
+✅ Both CV templates compile  
+✅ Can build full CV  
+✅ Can build tailored CV  
+✅ Modern professional design  
+✅ ATS compatible (>80%)  
+✅ Build time < 1 second  
+✅ Easy to maintain  
 
 ## Need Help?
 
-1. Check the relevant ticket for detailed instructions
-2. Review `AGENTS.md` for Typst coding guidelines
-3. Look at the original LaTeX files for reference
-4. Document any issues in the ticket files
+1. **Read the master overview**: `.ticket/000-master-overview.md`
+2. **Check AGENTS.md**: Technical guidelines and examples
+3. **Follow tickets sequentially**: Don't skip ahead
+4. **Test frequently**: Compile often to catch errors
+5. **Document decisions**: Update ticket files
 
-## Tips
+## Tips for Success
 
-- Work through tickets in order (don't skip ahead)
-- Check dependencies before starting a ticket
-- Test frequently as you build
-- Document all design decisions
-- Create all specified deliverables
-- Update ticket status as you progress
+- **Start simple**: Core system first, AI later
+- **Test early**: Compile resources as you create them
+- **Be comprehensive**: Include all accomplishments in resources
+- **Use metadata**: Rich tags and scores enable better tailoring
+- **Iterate**: Build full CV first, then try tailoring
+
+## Next Steps
+
+1. **Read** `.ticket/000-master-overview.md` for complete context
+2. **Review** `AGENTS.md` for technical specifications
+3. **Start** with Ticket 001 (content extraction & schema design)
+4. **Work** through tickets sequentially
+5. **Build** incrementally and test often
 
 ---
 
-**Ready to start?** → Open `.ticket/000-master-overview.md`
+**Ready to begin?** → Open `.ticket/000-master-overview.md`
+
+**Quick reference?** → See `AGENTS.md` for code examples
+
+**Implementation details?** → Read individual ticket files
