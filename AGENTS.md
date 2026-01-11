@@ -2,6 +2,67 @@
 
 This document provides guidelines for AI coding agents working in this Typst CV repository.
 
+## Task Workflow Requirements
+
+**CRITICAL: All tasks must follow the Plan → Execute → Test → Review loop.**
+
+Every task, especially those involving visual output (PDFs, layouts, styling), MUST include:
+
+1. **Plan**: Break down the task into clear steps with expected outcomes
+2. **Execute**: Implement the changes
+3. **Test**: Compile/run the code and verify it works
+4. **Review**: Actually examine the output to confirm it matches requirements
+
+### For PDF/Visual Tasks:
+
+When working on templates, styling, or any visual output:
+
+```bash
+# After making changes, ALWAYS:
+
+# 0. Clean builds folder before testing
+rm -rf builds/*
+
+# 1. Compile to PDF
+typst compile --root . templates/CV.typ builds/CV.pdf
+
+# 2. Export to PNG for review (can view images directly)
+typst compile --root . templates/CV.typ 'builds/CV-page-{p}.png' --ppi 150
+
+# 3. Review the actual output
+# Read the PNG files to visually verify the changes worked
+
+# 4. Compare against reference images if available
+# Check .ai/refs/ for reference screenshots
+```
+
+**Never state that something is "done" or "complete" without:**
+- ✅ Compiling successfully
+- ✅ Actually reviewing the output (PNG/PDF)
+- ✅ Confirming it matches the requirements/reference
+- ✅ Documenting what was verified
+
+### Example of INCORRECT workflow:
+
+```
+❌ "I've updated the skill-bar function. The PDF should now look correct!"
+   (No testing, no review, just assumption)
+```
+
+### Example of CORRECT workflow:
+
+```
+✅ "I've updated the skill-bar function. Let me test it:
+   1. Compiling PDF... ✓ No errors
+   2. Exporting to PNG... ✓ 
+   3. Reviewing page 1... 
+   4. Comparing to reference... 
+   Issue found: dots are vertical instead of horizontal.
+   Investigating..."
+```
+
+This prevents premature completion and ensures quality.
+
 ## Repository Overview
 
 This is a resource-based Typst CV system that allows generating tailored CVs for specific job applications. The system separates content (resources) from presentation (templates).
