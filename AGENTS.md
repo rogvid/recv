@@ -734,6 +734,62 @@ done
 ./validate-ats.sh builds/test/ATS_CV.pdf
 ```
 
+## OpenCode Skills
+
+### Tailor CV Skill (`/tailor-cv`)
+
+**Location**: `.opencode/skills/tailor-cv/`
+
+An AI-powered skill that automatically tailors CVs based on job descriptions. Generates both a One-Page CV (OP_CV) and ATS-optimized CV.
+
+**Usage:**
+```bash
+# From a job description file
+/tailor-cv test-jobs/senior-ml-engineer.txt
+
+# From a URL
+/tailor-cv https://www.linkedin.com/jobs/view/12345678
+
+# With custom job name
+/tailor-cv job-description.txt google-ml-engineer
+```
+
+**What it does:**
+1. Analyzes job description (extracts keywords, requirements, skills)
+2. Matches job requirements to your work experience resources
+3. Ranks work experiences by relevance score
+4. Selects top 3-4 most relevant positions
+5. Filters accomplishments by tag overlap and impact
+6. Generates tailored configuration files
+7. Creates custom OP_CV template (guaranteed 1 page)
+8. Creates custom ATS_CV template (1-2 pages, keyword-optimized)
+9. Compiles both PDFs with previews
+10. Generates detailed tailoring report
+
+**Output structure:**
+```
+builds/{job-slug}/
+├── OP_CV.pdf                    # One-page tailored CV
+├── ATS_CV.pdf                   # ATS-optimized CV (1-2 pages)
+├── OP_CV-preview.png            # Preview
+├── ATS_CV-page-{1,2}.png        # Preview pages
+├── job-description.txt          # Original job posting
+└── tailoring-report.md          # Detailed report
+
+config/tailored/{job-slug}-config.typ       # Generated config
+templates/tailored/{job-slug}-OP_CV.typ     # OP_CV template
+templates/tailored/{job-slug}-ATS_CV.typ    # ATS_CV template
+```
+
+**Key features:**
+- **Intelligent matching**: Uses tag overlap, relevance scores, keyword matching
+- **One-page guarantee**: OP_CV always fits on exactly 1 page
+- **ATS optimization**: Extracts and includes exact keywords from job posting
+- **Comprehensive reporting**: Explains every tailoring decision
+- **Reusable**: Generated configs can be manually adjusted and re-compiled
+
+**See**: `.opencode/skills/tailor-cv/README.md` for detailed documentation
+
 ## Additional Notes
 
 - Resource files are Typst dictionaries, easily parsable
@@ -742,3 +798,4 @@ done
 - Version control tracks all applications via configs
 - Reusable resources reduce duplication
 - Easy to maintain and update over time
+- Use `/tailor-cv` skill for automated AI-powered CV tailoring
