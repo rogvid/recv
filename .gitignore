@@ -4,3 +4,11 @@
 .ticket/
 *.pdf
 
+-e 
+# Typst builds
+builds/
+.typst-cache/
+
+# Keep configs and resources
+!config/
+!resources/
