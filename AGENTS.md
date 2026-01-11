@@ -4,436 +4,680 @@ This document provides guidelines for AI coding agents working in this Typst CV 
 
 ## Repository Overview
 
-This is a Typst-based CV/Resume repository containing professional CVs in different formats:
-- `CV.typ` - Standard CV with detailed formatting and visual elements
-- `ATS_CV.typ` - ATS-friendly CV optimized for Applicant Tracking Systems
-- Both compile to their respective PDF files
+This is a resource-based Typst CV system that allows generating tailored CVs for specific job applications. The system separates content (resources) from presentation (templates).
+
+**Key Features:**
+- **Resource-based**: All work experience, education, courses, and certificates stored as individual files
+- **Tailorable**: Generate customized CVs based on job descriptions
+- **Two variants**: Standard CV and ATS-optimized CV
+- **Reusable**: Share common styling and components
+
+**Structure:**
+```
+resources/
+  work/           # Individual job files
+  education/      # Degrees, courses, certificates
+templates/
+  CV.typ          # Standard CV template
+  ATS_CV.typ      # ATS-optimized CV template
+  cv-common.typ   # Shared components
+builds/
+  [job-name]/     # Generated CVs for specific applications
+```
 
 ## Build Commands
 
-### Compiling PDFs
+### Compiling CVs
 
-**Build a single CV:**
+**Build with all content:**
 ```bash
-typst compile CV.typ
-typst compile ATS_CV.typ
+typst compile templates/CV.typ builds/full-cv.pdf
+typst compile templates/ATS_CV.typ builds/full-ats-cv.pdf
 ```
 
-**Build with custom output name:**
+**Build tailored CV:**
 ```bash
-typst compile CV.typ output.pdf
+# Using custom build script (to be created)
+./build-cv.sh "Senior Data Scientist" job-description.txt
+# Output: builds/senior-data-scientist/CV.pdf
+#         builds/senior-data-scientist/ATS_CV.pdf
 ```
 
 **Watch mode (auto-rebuild on changes):**
 ```bash
-typst watch CV.typ
-typst watch ATS_CV.typ
+typst watch templates/CV.typ builds/test.pdf
+typst watch templates/ATS_CV.typ builds/test-ats.pdf
 ```
 
-**Build all CVs:**
+**Check for errors:**
 ```bash
-typst compile CV.typ && typst compile ATS_CV.typ
+typst compile --diagnostic-format=short templates/CV.typ
 ```
 
-**Check for errors without building:**
-```bash
-typst compile --diagnostic-format=short CV.typ
+## Resource File Structure
+
+### Work Experience Files
+
+**Location**: `resources/work/YYYY-MM-company-position.typ`
+
+**Naming convention**: `[start-year]-[start-month]-[company-slug]-[position-slug].typ`
+
+Examples:
+- `2018-12-arge-innovations-owner.typ`
+- `2018-12-dfds-data-science-consultant.typ`
+- `2017-02-atp-data-scientist.typ`
+
+**File format:**
+```typst
+// resources/work/2018-12-dfds-data-science-consultant.typ
+
+#let job = (
+  position: "Data Science Consultant",
+  company: "DFDS A/S",
+  location: "Copenhagen, Denmark",
+  start_date: "Dec. 2018",
+  end_date: "May 2019",
+  current: false,
+  
+  // Short description for standard CV
+  description: "Spearheaded a paradigm shift of the transportation & logistics industry",
+  
+  // Detailed description
+  description_long: "Led data science initiatives to revolutionize transportation planning through predictive analytics and optimization algorithms. Worked in an agile team of 5 data scientists and engineers.",
+  
+  // Keywords/tags for matching
+  tags: ("machine-learning", "optimization", "transportation", "logistics", "python", "scikit-learn", "predictive-analytics"),
+  
+  // Accomplishments - can be filtered/selected
+  accomplishments: (
+    (
+      text: "Reduced RMSE of prediction algorithm by 20% by helping to implement scalable machine learning models",
+      impact: "high",
+      quantifiable: true,
+      tags: ("machine-learning", "python", "performance-improvement")
+    ),
+    (
+      text: "Enabled completely new transportation planning paradigm by implementing dynamic optimization tool that visualized optimal plan in real time",
+      impact: "high",
+      quantifiable: false,
+      tags: ("optimization", "visualization", "innovation")
+    ),
+    (
+      text: "Mentored junior data scientists in best practices for model development and deployment",
+      impact: "medium",
+      quantifiable: false,
+      tags: ("mentoring", "leadership")
+    ),
+  ),
+  
+  // Technologies used
+  technologies: ("Python", "Scikit-learn", "Pandas", "OR-Tools", "Flask", "D3.js", "Docker"),
+  
+  // Relevance weight for different job types
+  relevance: (
+    "data-science": 10,
+    "machine-learning": 10,
+    "optimization": 10,
+    "backend-engineering": 6,
+    "data-engineering": 7,
+  )
+)
 ```
 
-### Validation
+### Education Files
 
-**Format check:**
-```bash
-typst compile CV.typ 2>&1 | grep -i error
+**Location**: `resources/education/[type]-YYYY-institution-degree.typ`
+
+**Types**: `degree`, `course`, `certificate`
+
+Examples:
+- `degree-2012-ku-msc-physics.typ`
+- `certificate-2017-coursera-deep-learning.typ`
+- `course-2018-coursera-social-network-analysis.typ`
+
+**File format:**
+```typst
+// resources/education/degree-2012-ku-msc-physics.typ
+
+#let education = (
+  type: "degree",  // degree, course, certificate
+  degree: "M.Sc. in Physics",
+  institution: "University of Copenhagen",
+  location: "Copenhagen, Denmark",
+  start_date: "Aug. 2012",
+  end_date: "May 2015",
+  
+  description: "Focus on computational physics, machine learning and mathematical modeling.",
+  
+  description_long: "Focused studies on applied mathematics, computational physics, machine learning, statistics and mathematical modeling. Conducted research on complex systems and pattern formation in biological systems.",
+  
+  thesis: (
+    title: "Inflammation of the Central Nervous System - Modeling Multiple Sclerosis as a Motile Excitable Medium",
+    advisor: "Professor Mogens Høgh Jensen",
+    summary: "Developed computational models to simulate MS disease progression using partial differential equations and Monte Carlo methods."
+  ),
+  
+  // Key courses or areas
+  highlights: (
+    "Computational Physics",
+    "Machine Learning",
+    "Statistical Mechanics",
+    "Mathematical Modeling",
+    "Numerical Methods"
+  ),
+  
+  tags: ("physics", "machine-learning", "computational-modeling", "mathematics", "research"),
+  
+  relevance: (
+    "data-science": 10,
+    "machine-learning": 9,
+    "research": 10,
+    "physics": 10,
+  )
+)
 ```
 
-**Preview in browser (if typst supports it):**
+**Certificate format:**
+```typst
+// resources/education/certificate-2017-coursera-deep-learning.typ
+
+#let education = (
+  type: "certificate",
+  name: "Deep Learning Specialization",
+  provider: "Coursera",
+  instructor: "Andrew Ng",
+  date: "Sep. 2017 - Feb. 2018",
+  
+  description: "Development of deep learning models in Tensorflow & Keras.",
+  
+  description_long: "Comprehensive specialization covering neural networks, CNNs, RNNs, and GANs. Implemented projects in image recognition, speech detection, and NLP.",
+  
+  projects: (
+    "Image Recognition with CNNs",
+    "Speech Detection and Recognition",
+    "Trigger Word Detection",
+    "Neural Style Transfer",
+    "Generative Adversarial Networks"
+  ),
+  
+  skills: ("TensorFlow", "Keras", "Deep Learning", "CNNs", "RNNs", "GANs", "Transfer Learning"),
+  
+  tags: ("deep-learning", "tensorflow", "keras", "neural-networks", "ai"),
+  
+  relevance: (
+    "machine-learning": 10,
+    "deep-learning": 10,
+    "ai-engineering": 10,
+    "data-science": 8,
+  )
+)
+```
+
+## CV Template Structure
+
+### Standard CV Template (templates/CV.typ)
+
+```typst
+#import "cv-common.typ": *
+
+// Import personal info
+#import "../resources/personal-info.typ": personal
+
+// Load configuration (which items to include)
+#import "../config/cv-config.typ": config
+
+// Set up document
+#set document(
+  title: "CV - " + personal.name,
+  author: personal.name,
+)
+
+#setup-cv-page(ats-mode: false)
+
+// Header
+#cv-header(personal)
+
+// Summary
+#section-header("Summary")
+#personal.summary
+#v(0.4cm)
+
+// Two-column layout
+#grid(
+  columns: (2fr, 1fr),
+  column-gutter: 1.5em,
+  [
+    // LEFT COLUMN
+    #section-header("Experience")
+    
+    // Load and filter work experiences
+    #for job_file in config.work {
+      let job_data = include-job(job_file)
+      if should-include(job_data, config) {
+        render-job(job_data, config)
+      }
+    }
+    
+    #section-header("Education")
+    
+    // Load degrees
+    #for edu_file in config.education.degrees {
+      let edu = include-education(edu_file)
+      render-education(edu, config)
+    }
+    
+    #section-header("Certifications")
+    
+    // Load certificates
+    #for cert_file in config.education.certificates {
+      let cert = include-education(cert_file)
+      render-certificate(cert, config)
+    }
+  ],
+  [
+    // RIGHT COLUMN (Sidebar)
+    #render-skills-section(config.skills)
+    #render-languages-section(personal.languages)
+  ]
+)
+```
+
+## Configuration System
+
+### Personal Info
+
+**File**: `resources/personal-info.typ`
+
+```typst
+#let personal = (
+  name: "Rogvi David Arge",
+  title: "Data Science & Optimization Consultant",
+  phone: "+45 5042 5002",
+  email: "argeinnovations@gmail.com",
+  linkedin: "linkedin.com/in/rogvidarge/en",
+  github: "github.com/rogvid",
+  location: "Copenhagen, Denmark",
+  
+  summary: [Data Scientist with more than 4 years of experience in agile project development and a passion for deep learning, predictive analytics and optimization. Vast experience in data wrangling, exploratory data analysis, machine learning and data visualization and applying these skills to generate corporate wide improvements.],
+  
+  // Skills with proficiency levels
+  technical_skills: (
+    (name: "Python", level: 5),
+    (name: "Machine Learning", level: 5),
+    (name: "Optimization", level: 5),
+    (name: "Data Visualization", level: 5),
+    (name: "Deep Learning", level: 4),
+    (name: "SQL", level: 5),
+    // ... more skills
+  ),
+  
+  soft_skills: (
+    (name: "Problem Solving", level: 5),
+    (name: "Critical Thinking", level: 5),
+    (name: "Communication", level: 5),
+    // ... more skills
+  ),
+  
+  languages: (
+    (name: "Faroese", level: 5, proficiency: "Native"),
+    (name: "Danish", level: 5, proficiency: "Native"),
+    (name: "English", level: 5, proficiency: "Professional"),
+    (name: "Norwegian", level: 3, proficiency: "Elementary"),
+    (name: "Swedish", level: 3, proficiency: "Elementary"),
+    (name: "French", level: 2, proficiency: "Elementary"),
+  ),
+)
+```
+
+### CV Configuration
+
+**File**: `config/cv-config.typ` (for full CV)
+
+```typst
+#let config = (
+  // Which work experiences to include (in order)
+  work: (
+    "2018-12-arge-innovations-owner.typ",
+    "2018-12-dfds-data-science-consultant.typ",
+    "2017-02-atp-data-scientist.typ",
+    "2015-04-conwx-data-analyst.typ",
+  ),
+  
+  // Education
+  education: (
+    degrees: (
+      "degree-2012-ku-msc-physics.typ",
+      "degree-2009-ku-bsc-physics.typ",
+    ),
+    certificates: (
+      "certificate-2017-coursera-deep-learning.typ",
+      "certificate-2015-udacity-data-analyst.typ",
+    ),
+  ),
+  
+  // Skills to highlight
+  skills: (
+    technical: "all",  // or array of specific skills
+    soft: "all",
+  ),
+  
+  // Accomplishments selection
+  accomplishments: (
+    max_per_job: 3,
+    min_impact: "medium",  // low, medium, high
+    prioritize_quantifiable: true,
+  ),
+  
+  // Filtering
+  filters: (
+    // No specific filters for full CV
+  )
+)
+```
+
+**File**: `config/tailored/senior-data-scientist-config.typ` (for specific job)
+
+```typst
+#let config = (
+  // Target job details
+  target: (
+    position: "Senior Data Scientist",
+    company: "Tech Company",
+    keywords: ("machine-learning", "python", "deep-learning", "team-leadership", "mlops"),
+  ),
+  
+  // Select most relevant work
+  work: (
+    "2018-12-dfds-data-science-consultant.typ",  // Most relevant
+    "2017-02-atp-data-scientist.typ",
+    "2018-12-arge-innovations-owner.typ",
+    "2015-04-conwx-data-analyst.typ",
+  ),
+  
+  education: (
+    degrees: (
+      "degree-2012-ku-msc-physics.typ",
+    ),
+    certificates: (
+      "certificate-2017-coursera-deep-learning.typ",
+    ),
+  ),
+  
+  // Filter accomplishments by relevance
+  accomplishments: (
+    max_per_job: 2,
+    min_impact: "high",
+    required_tags: ("machine-learning", "python", "optimization"),
+    prioritize_quantifiable: true,
+  ),
+  
+  // Skill highlighting
+  skills: (
+    technical: ("Python", "Machine Learning", "Deep Learning", "TensorFlow", "Scikit-learn"),
+    soft: ("Problem Solving", "Critical Thinking", "Communication", "Scrum"),
+    highlight: ("Machine Learning", "Deep Learning", "Python"),  // Show prominently
+  ),
+)
+```
+
+## Build System
+
+### Simple Build Script
+
+**File**: `build-cv.sh`
+
 ```bash
-typst watch CV.typ --open
+#!/bin/bash
+# Build tailored CV for specific job
+
+JOB_NAME=$1
+CONFIG_FILE=$2
+
+if [ -z "$JOB_NAME" ]; then
+  echo "Usage: ./build-cv.sh <job-name> [config-file]"
+  exit 1
+fi
+
+# Create output directory
+mkdir -p "builds/$JOB_NAME"
+
+# Use provided config or default
+if [ -z "$CONFIG_FILE" ]; then
+  CONFIG_FILE="config/cv-config.typ"
+fi
+
+# Build both variants
+echo "Building CV for: $JOB_NAME"
+echo "Using config: $CONFIG_FILE"
+
+typst compile \
+  --input config="$CONFIG_FILE" \
+  templates/CV.typ \
+  "builds/$JOB_NAME/CV.pdf"
+
+typst compile \
+  --input config="$CONFIG_FILE" \
+  templates/ATS_CV.typ \
+  "builds/$JOB_NAME/ATS_CV.pdf"
+
+echo "✓ Built: builds/$JOB_NAME/CV.pdf"
+echo "✓ Built: builds/$JOB_NAME/ATS_CV.pdf"
+```
+
+### Advanced: AI-Powered Tailoring
+
+**File**: `tailor-cv.py`
+
+```python
+#!/usr/bin/env python3
+"""
+AI-powered CV tailoring based on job description
+"""
+
+import sys
+import json
+from pathlib import Path
+
+def analyze_job_description(job_desc_file):
+    """Extract keywords and requirements from job description"""
+    # Use NLP/LLM to extract:
+    # - Required skills
+    # - Nice-to-have skills
+    # - Experience level
+    # - Domain/industry
+    # - Key responsibilities
+    pass
+
+def rank_resources(resources, job_analysis):
+    """Rank work/education resources by relevance to job"""
+    # Score each resource based on:
+    # - Tag overlap with job keywords
+    # - Relevance scores
+    # - Accomplishment impact
+    # - Technology match
+    pass
+
+def generate_config(job_name, job_analysis, ranked_resources):
+    """Generate Typst config file for tailored CV"""
+    config = {
+        "target": job_analysis,
+        "work": ranked_resources["work"][:4],  # Top 4 most relevant
+        "education": {
+            "degrees": ranked_resources["degrees"],
+            "certificates": ranked_resources["certificates"][:2]
+        },
+        "accomplishments": {
+            "required_tags": job_analysis["keywords"][:10],
+            "max_per_job": 2,
+            "min_impact": "high"
+        },
+        "skills": {
+            "highlight": job_analysis["required_skills"][:8]
+        }
+    }
+    
+    # Write to config file
+    config_path = Path(f"config/tailored/{job_name}-config.typ")
+    # Convert to Typst format
+    pass
+
+def main():
+    if len(sys.argv) < 3:
+        print("Usage: ./tailor-cv.py <job-name> <job-description.txt>")
+        sys.exit(1)
+    
+    job_name = sys.argv[1]
+    job_desc_file = sys.argv[2]
+    
+    # Analyze job description
+    job_analysis = analyze_job_description(job_desc_file)
+    
+    # Load all resources
+    resources = load_all_resources()
+    
+    # Rank by relevance
+    ranked = rank_resources(resources, job_analysis)
+    
+    # Generate config
+    config_file = generate_config(job_name, job_analysis, ranked)
+    
+    # Build CV
+    import subprocess
+    subprocess.run(["./build-cv.sh", job_name, config_file])
+
+if __name__ == "__main__":
+    main()
 ```
 
 ## Typst Style Guidelines
 
-### Document Structure
-
-**Basic template structure:**
-```typst
-#set document(title: "CV - Name", author: "Your Name")
-#set page(
-  paper: "a4",
-  margin: (top: 1.5cm, bottom: 1.2cm, left: 2.0cm, right: 2.0cm)
-)
-#set text(font: "New Computer Modern", size: 11pt, lang: "da")
-#set par(justify: false, leading: 0.65em)
-```
-
-### Imports and Setup
-
-**Standard imports:**
-```typst
-// No package manager yet, use built-in features
-// Custom functions defined in-file or separate module
-```
-
-**Font setup:**
-```typst
-#set text(
-  font: "New Computer Modern",  // or "Liberation Sans", "Inter"
-  size: 11pt,
-  lang: "da",
-  hyphenate: true
-)
-```
-
 ### Color Scheme
 
-**Define colors at top of document:**
 ```typst
-#let myblue = rgb("#006C96")        // rgb(0.0, 0.43, 0.59)
-#let carmine = rgb("#96000E")       // rgb(0.59, 0.0, 0.09)
-#let coralred = rgb("#FF4040")      // rgb(1.0, 0.25, 0.25)
-#let darkscarlet = rgb("#570319")   // rgb(0.34, 0.01, 0.1)
-#let lightgray = rgb("#D4DEF0")     // rgb(0.83, 0.87, 0.94)
+#let primary-color = rgb("#1E3A8A")
+#let accent-color = rgb("#3B82F6")
+#let neutral-color = rgb("#64748B")
+#let text-color = rgb("#1F2937")
+#let light-gray = rgb("#F3F4F6")
 ```
-
-**Usage**: Use `myblue` for headlines, accents, and professional elements.
 
 ### Custom Functions
 
-**Headline styling:**
+**Load and render job:**
 ```typst
-#let headline(content) = {
-  text(size: 14pt, fill: myblue, weight: "bold")[#content]
+#let include-job(filename) = {
+  let job_data = include("../resources/work/" + filename)
+  job_data.job
 }
-```
 
-**Text line formatting (position | company | date):**
-```typst
-#let textline(position, company, date) = {
-  grid(
-    columns: (1fr, auto),
-    [*#position* | #company],
-    align(right)[_#date_]
+#let should-include(job_data, config) = {
+  // Check if job matches filters
+  if "filters" in config and "required_tags" in config.filters {
+    // Check tag overlap
+  }
+  true
+}
+
+#let render-job(job, config) = {
+  // Select accomplishments based on config
+  let accomplishments = select-accomplishments(job.accomplishments, config)
+  
+  job-entry(
+    job.position,
+    job.company,
+    job.start_date + " - " + job.end_date,
+    job.description,
+    accomplishments.map(a => a.text)
   )
 }
-```
-
-**Accomplishments (bullet points):**
-```typst
-#let accomplishment(content) = {
-  text(size: 10pt)[
-    #box(baseline: 20%, circle(radius: 2pt, fill: myblue))
-    #h(0.3em)
-    #content
-  ]
-}
-```
-
-**Skill bars (proficiency visualization):**
-```typst
-#let skillbar(filled, empty) = {
-  let total = filled + empty
-  box[
-    #for i in range(filled) {
-      circle(radius: 2pt, fill: myblue)
-      h(2pt)
-    }
-    #for i in range(empty) {
-      circle(radius: 2pt, fill: rgb("#CCCCCC"))
-      h(2pt)
-    }
-  ]
-}
-```
-
-**Section divider:**
-```typst
-#let section-line() = {
-  line(length: 100%, stroke: 0.3mm + myblue)
-}
-```
-
-### Formatting Conventions
-
-**Spacing:**
-- Use `v(0.2cm)` for consistent vertical spacing
-- Section headers followed by `section-line()`
-- Use `h(0.5cm)` for horizontal spacing
-
-**Page Layout:**
-```typst
-#set page(
-  paper: "a4",
-  margin: (top: 1.5cm, bottom: 1.2cm, left: 2.0cm, right: 2.0cm),
-  numbering: none
-)
-```
-
-**Text Sizes:**
-```typst
-// Name: 24pt
-// Title: 18pt
-// Section headings: 14pt
-// Body text: 11pt
-// Details: 10pt
-
-#text(size: 24pt)[Name]
-#text(size: 18pt)[Title]
-#text(size: 14pt)[Section]
-#text(size: 11pt)[Body]
-#text(size: 10pt)[Detail]
-```
-
-### Content Structure
-
-**Section Order:**
-1. Header (Name, Title, Contact Info)
-2. Summary
-3. Experience / Employment History
-4. Education
-5. Certifications (if applicable)
-6. Skills (Technical & Soft Skills)
-7. Languages
-
-**Experience Entries:**
-```typst
-#textline("Position", "Company", "Date Range")
-#text(size: 10pt)[Description text]
-#v(0.1cm)
-#accomplishment[Key achievement or responsibility]
-#accomplishment[Another accomplishment]
-```
-
-### Layout Techniques
-
-**Two-column layouts:**
-```typst
-#grid(
-  columns: (2fr, 1fr),
-  column-gutter: 1em,
-  [
-    // Main content (left column)
-  ],
-  [
-    // Sidebar content (right column)
-  ]
-)
-```
-
-**Flexible boxes:**
-```typst
-#box(width: 100%)[Content]
-#block(width: 100%, fill: lightgray, inset: 8pt)[Highlighted content]
-```
-
-### ATS Optimization (ATS_CV.typ)
-
-1. **Simpler formatting**: Minimal visual complexity
-2. **Competency boxes**: Use simple text boxes for keywords
-3. **Standard lists**: Use bullet points with `list` function
-4. **More whitespace**: Larger font (12pt), more padding
-5. **Standard fonts**: Use widely supported fonts
-
-**Competency box:**
-```typst
-#let competency(skill) = {
-  box(
-    fill: rgb("#E8E8E8"),
-    inset: (x: 6pt, y: 4pt),
-    radius: 3pt,
-    [#skill]
-  )
-  h(4pt)
-}
-```
-
-### Typography Rules
-
-1. **Links**: Use `#link("url")[display text]`
-2. **Dates**: Full month names: "Dec. 2018 - May 2019"
-3. **Abbreviations**: Use periods: "M.Sc.", "B.Sc.", "Feb."
-4. **Special characters**: UTF-8 supported natively (ø, æ, å)
-5. **Bold/Italic**: Use `*bold*` or `_italic_` in markup mode
-
-### Image Handling
-
-**Work photos:**
-```typst
-#image("workpicture.png", width: 70%)
-```
-
-**With alignment:**
-```typst
-#align(right)[
-  #image("workpicture.png", width: 60%)
-]
-```
-
-- Images should be in repository root or `images/` folder
-- Use PNG format for photos
-- Specify width as percentage or absolute measure
-
-## Naming Conventions
-
-**Files:**
-- Main CV: `CV.typ` → `CV.pdf`
-- ATS version: `ATS_CV.typ` → `ATS_CV.pdf`
-- Images: lowercase with underscores: `workpicture.png`
-- Modules: descriptive names: `cv-helpers.typ`, `styles.typ`
-
-**Functions:**
-- Use kebab-case: `text-line`, `skill-bar`, `section-line`
-- Or camelCase: `textLine`, `skillBar` (be consistent)
-- Descriptive names: `headline` not `hl`
-
-**Colors:**
-- Lowercase with descriptors: `myblue`, `coralred`, `darkscarlet`
-
-## Error Handling
-
-**Common Typst Errors:**
-
-1. **Type mismatch**: Check function argument types
-2. **Unknown variable**: Ensure variables are defined before use
-3. **Invalid syntax**: Check for missing brackets, parentheses
-4. **Missing file**: Verify image paths and imports
-
-**Debugging approach:**
-1. Compile to see specific error line numbers
-2. Use `#assert()` to validate assumptions
-3. Comment out sections to isolate problematic code
-4. Check Typst documentation for function signatures
-
-## Git Workflow
-
-**Ignored files** (update `.gitignore`):
-```
-*.pdf
-*.log
-.typst-cache/
-```
-
-**What to commit:**
-- `.typ` source files
-- `.png` image assets
-- `AGENTS.md` and documentation
-- Configuration files
-
-**What NOT to commit:**
-- Compiled PDF files (optional: may commit for convenience)
-- Cache directories
-- Editor-specific files
-- OS-specific files
-
-## Testing Changes
-
-Before committing changes:
-
-1. **Compile both CVs**: `typst compile CV.typ && typst compile ATS_CV.typ`
-2. **Visual inspection**: Open PDFs and check formatting
-3. **Check for errors**: Review compilation output
-4. **Validate links**: Ensure all URLs work correctly
-5. **Cross-platform**: Test on different systems if possible
-
-## Common Tasks
-
-**Adding a new job:**
-```typst
-#textline("Job Title", "Company Name", "Month Year - Month Year")
-#text(size: 10pt)[Job description and context]
-#v(0.1cm)
-#accomplishment[Key achievement with metrics]
-#accomplishment[Another important contribution]
-#v(0.3cm)
-```
-
-**Adding a skill:**
-```typst
-#grid(
-  columns: (auto, 1fr),
-  [Python], [#skillbar(5, 0)]  // 5 filled, 0 empty = expert
-)
-```
-
-**Adding a certification:**
-```typst
-#textline("Certification Name", "Provider", "Month Year")
-#text(size: 10pt)[Brief description of what was learned]
-#v(0.2cm)
-```
-
-**Updating contact information:**
-```typst
-#align(center)[
-  #text(size: 10pt)[
-    +45 5042 5002 #h(0.5cm)
-    argeinnovations\@gmail.com #h(0.5cm)
-    #link("https://linkedin.com/in/rogvidarge/en")[LinkedIn] #h(0.5cm)
-    #link("https://github.com/rogvid")[GitHub]
-  ]
-]
 ```
 
 ## Best Practices
 
-1. **Consistency**: Match formatting style of existing entries
-2. **Metrics**: Include quantifiable achievements when possible
-3. **Conciseness**: Keep descriptions clear and brief
-4. **Professional tone**: Maintain formal, professional language
-5. **Function reuse**: Create helper functions for repeated patterns
-6. **Color usage**: Use `myblue` for all accent colors consistently
-7. **Whitespace**: Maintain consistent spacing between sections
-8. **Compile frequently**: Build after each significant change
-9. **Modular design**: Consider separating styles into reusable modules
-10. **Comments**: Document complex functions and layout logic
+### Resource Files
 
-## Typst-Specific Features
+1. **Comprehensive data**: Include all accomplishments, even minor ones
+2. **Rich tagging**: Use detailed tags for better filtering
+3. **Quantify impact**: Include metrics and numbers
+4. **Multiple descriptions**: Short and long versions
+5. **Relevance scores**: Help automatic ranking
 
-**Show rules (styling):**
-```typst
-#show heading.where(level: 1): it => {
-  text(fill: myblue, size: 14pt, weight: "bold")[#it.body]
-  v(0.2cm)
-  section-line()
-  v(0.2cm)
-}
+### Configuration
+
+1. **Job-specific configs**: Create new config for each application
+2. **Keyword matching**: Align with job description
+3. **Prioritize impact**: Show highest-impact accomplishments
+4. **Skill highlighting**: Match required skills
+
+### Version Control
+
+```gitignore
+# Build outputs
+builds/
+
+# Keep configs for tracking
+!config/
+
+# Keep resources
+!resources/
 ```
 
-**Custom state management:**
-```typst
-#let section-counter = counter("sections")
-#section-counter.step()
+## Common Tasks
+
+### Adding a new job
+
+1. Create file: `resources/work/YYYY-MM-company-position.typ`
+2. Fill in all fields with comprehensive data
+3. Add to relevant configs
+
+### Tailoring for a job
+
+```bash
+# Option 1: Manual config
+# 1. Create config/tailored/job-name-config.typ
+# 2. Select relevant resources and accomplishments
+# 3. Build
+./build-cv.sh job-name config/tailored/job-name-config.typ
+
+# Option 2: AI-assisted
+./tailor-cv.py job-name job-description.txt
 ```
 
-**Conditional content:**
-```typst
-#if include-photo {
-  image("workpicture.png")
-}
+### Building full CV
+
+```bash
+./build-cv.sh full-cv config/cv-config.typ
 ```
 
-## Migration from LaTeX
+## File Naming Conventions
 
-**Package equivalents:**
-- `geometry` → `#set page(margin: ...)`
-- `xcolor` → `rgb()`, `cmyk()`, `luma()`
-- `tikz` → Typst's native drawing with `line()`, `circle()`, `rect()`
-- `hyperref` → `#link()` and automatic PDF metadata
-- Custom commands → Typst functions with `#let`
+**Work**: `YYYY-MM-company-slug-position-slug.typ`  
+**Degrees**: `degree-YYYY-institution-slug-degree-slug.typ`  
+**Certificates**: `certificate-YYYY-provider-slug-name-slug.typ`  
+**Courses**: `course-YYYY-provider-slug-name-slug.typ`
 
-**Key differences:**
-- No preamble needed - settings applied inline
-- Functions instead of commands
-- Content mode vs. code mode
-- Simpler syntax for common tasks
-- Built-in grid and layout system
+**Slugs**: lowercase, hyphens, no special characters
+
+## Testing
+
+```bash
+# Compile all resources (check for errors)
+for file in resources/work/*.typ; do
+  typst compile --input test=true "$file"
+done
+
+# Build test CV
+./build-cv.sh test config/cv-config.typ
+
+# Validate ATS
+./validate-ats.sh builds/test/ATS_CV.pdf
+```
 
 ## Additional Notes
 
-- Typst compiles much faster than LaTeX
-- No auxiliary files needed (single pass compilation)
-- Native support for modern features (no package hunting)
-- Both CVs should share common helper functions (consider `cv-common.typ`)
-- ATS version prioritizes parsability over visual design
-- Always test PDF output for proper text extraction
-- Use `typst watch` during development for live preview
+- Resource files are Typst dictionaries, easily parsable
+- Configuration system allows fine-grained control
+- Build system supports both manual and AI-assisted tailoring
+- Version control tracks all applications via configs
+- Reusable resources reduce duplication
+- Easy to maintain and update over time
