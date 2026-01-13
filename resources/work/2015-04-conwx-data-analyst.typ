@@ -4,10 +4,10 @@
 #let job = (
   // Basic Information
   position: "Data Analyst",
-  company: "ConWX ApS",
+  company: "ConWX",
   location: "Copenhagen, Denmark",
   start_date: "Apr. 2015",
-  end_date: "Jan. 2017",
+  end_date: "Feb. 2017",
   current: false,
   
   // Descriptions

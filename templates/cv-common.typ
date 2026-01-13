@@ -28,8 +28,8 @@
 // COLOR DEFINITIONS
 // ============================================================================
 
-#let primary-color = rgb("#1E3A8A")      // Dark blue for headers
-#let accent-color = rgb("#3B82F6")       // Bright blue for highlights
+#let primary-color = rgb("#3d7b8a")      // Teal/blue-green for headers (matches reference)
+#let accent-color = rgb("#3d7b8a")       // Same teal for highlights
 #let neutral-color = rgb("#64748B")      // Gray for secondary text
 #let text-color = rgb("#1F2937")         // Dark gray for body text
 #let light-gray = rgb("#F3F4F6")         // Light gray for backgrounds
@@ -77,10 +77,13 @@
 /// 
 /// Parameters:
 ///   - ats-mode (bool): Use ATS-friendly layout (wider margins, simpler formatting)
-#let setup-cv-page(ats-mode: false) = {
+///   - compact-mode (bool): Use compact layout for 1-page CVs (tighter spacing, smaller fonts)
+#let setup-cv-page(ats-mode: false, compact-mode: false) = {
   set page(
     paper: "a4",
-    margin: if ats-mode {
+    margin: if compact-mode {
+      (top: 1.27cm, bottom: 1.27cm, left: 1.27cm, right: 1.27cm)  // 0.5in all sides to match reference
+    } else if ats-mode {
       (top: 2cm, bottom: 1.5cm, left: 1.5cm, right: 1.5cm)
     } else {
       (top: 1.5cm, bottom: 1.2cm, left: 2cm, right: 2cm)
@@ -89,15 +92,15 @@
   )
   
   set text(
-    font: "New Computer Modern",  // Default Typst font, professional and readable
-    size: sizes.normal,
+    font: "Latin Modern Roman",  // Matches lmodern package from LaTeX
+    size: if compact-mode { 11pt } else { sizes.normal },  // LaTeX uses 11pt document class
     lang: "en",
     fill: text-color,
   )
   
   set par(
     justify: false,
-    leading: 0.65em,
+    leading: if compact-mode { 0.25em } else { 0.65em },
   )
   
   // Set default list styling

@@ -3,24 +3,28 @@
 
 #let education = (
   type: "degree",
-  degree_type: "B.Sc.",
-  field: "Physics",
+  degree: "B.Sc. in Physics",
   institution: "University of Copenhagen",
   location: "Copenhagen, Denmark",
   start_date: "Aug. 2009",
-  end_date: "May 2012",
-  graduation_date: "May 2012",
+  end_date: "Jun. 2012",
   
   // Descriptions
   description: "Foundation in physics, mathematics, and computational methods",
   
+  description_long: "Focused studies on quantum optics, solid state physics, laser physics, optics, and experimental physics. Built foundational knowledge in classical mechanics, quantum mechanics, statistical physics, and numerical methods.",
+  
   // Highlights
-  relevant_courses: (
+  highlights: (
     "Classical Mechanics",
     "Quantum Mechanics",
     "Statistical Physics",
     "Mathematical Methods",
     "Programming and Numerical Methods",
+    "Quantum Optics",
+    "Solid State Physics",
+    "Laser Physics",
+    "Experimental Physics",
   ),
   
   // Tags

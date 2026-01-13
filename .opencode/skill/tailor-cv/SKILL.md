@@ -1,3 +1,13 @@
+---
+name: tailor-cv
+description: Tailor CV for specific job applications by analyzing job descriptions, matching work experience, and generating optimized OP_CV and ATS_CV documents
+license: MIT
+compatibility: opencode
+metadata:
+  category: cv-generation
+  proactive: false
+---
+
 # Tailor CV Skill
 
 This skill tailors both the One-Page CV (OP_CV) and ATS CV based on a job description.

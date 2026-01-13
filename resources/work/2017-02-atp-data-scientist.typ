@@ -7,7 +7,7 @@
   company: "ATP",
   location: "Hillerød, Denmark",
   start_date: "Feb. 2017",
-  end_date: "Nov. 2018",
+  end_date: "Dec. 2018",
   current: false,
   
   // Descriptions
