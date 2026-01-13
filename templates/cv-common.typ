@@ -28,11 +28,11 @@
 // COLOR DEFINITIONS
 // ============================================================================
 
-#let primary-color = rgb("#3d7b8a")      // Teal/blue-green for headers (matches reference)
-#let accent-color = rgb("#3d7b8a")       // Same teal for highlights
+#let primary-color = rgb("#006D96")      // Exact LaTeX myblue: rgb(0.0, 0.43, 0.59)
+#let accent-color = rgb("#006D96")       // Same as primary for consistency
 #let neutral-color = rgb("#64748B")      // Gray for secondary text
 #let text-color = rgb("#1F2937")         // Dark gray for body text
-#let light-gray = rgb("#F3F4F6")         // Light gray for backgrounds
+#let light-gray = rgb("#D3D3D3")         // Matches LaTeX lightgray
 #let border-color = rgb("#E5E7EB")       // Border color
 #let white = rgb("#FFFFFF")              // White
 
@@ -82,7 +82,7 @@
   set page(
     paper: "a4",
     margin: if compact-mode {
-      (top: 1.27cm, bottom: 1.27cm, left: 1.27cm, right: 1.27cm)  // 0.5in all sides to match reference
+      (top: 1.0cm, bottom: 1.0cm, left: 1.5cm, right: 1.5cm)  // Exact LaTeX geometry values
     } else if ats-mode {
       (top: 2cm, bottom: 1.5cm, left: 1.5cm, right: 1.5cm)
     } else {
@@ -280,12 +280,12 @@
   // Wrap each circle in box() to make it inline instead of block-level
   {
     for i in range(filled) {
-      box(circle(radius: 2.5pt, fill: color))
-      h(3pt)
+      box(circle(radius: 3.5pt, fill: color))  // Increased from 3.175pt to match reference
+      h(2pt)  // LaTeX: \hspace{2.0pt}
     }
     for i in range(empty) {
-      box(circle(radius: 2.5pt, fill: light-gray, stroke: 0.5pt + border-color))
-      h(3pt)
+      box(circle(radius: 3.5pt, fill: light-gray, stroke: none))  // Increased from 3.175pt
+      h(2pt)  // LaTeX: \hspace{2.0pt}
     }
   }
 }

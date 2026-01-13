@@ -29,11 +29,8 @@ typst compile --root . templates/CV.typ builds/CV.pdf
 # 2. Export to PNG for review (can view images directly)
 typst compile --root . templates/CV.typ 'builds/CV-page-{p}.png' --ppi 150
 
-# 3. Review the actual output
-# Read the PNG files to visually verify the changes worked
-
-# 4. Compare against reference images if available
-# Check .ai/refs/ for reference screenshots
+# 3. Review the actual output and compare against reference images if available
+# Use the image-compare skill and check .ai/refs/ for reference screenshots
 ```
 
 **Never state that something is "done" or "complete" without:**
@@ -70,7 +67,7 @@ This is a resource-based Typst CV system that allows generating tailored CVs for
 **Key Features:**
 - **Resource-based**: All work experience, education, courses, and certificates stored as individual files
 - **Tailorable**: Generate customized CVs based on job descriptions
-- **Two variants**: Standard CV and ATS-optimized CV
+- **Two variants**: Standard One Page CV (OP_CV) and ATS-optimized CV (ATS_CV)
 - **Reusable**: Share common styling and components
 
 **Structure:**
@@ -79,7 +76,7 @@ resources/
   work/           # Individual job files
   education/      # Degrees, courses, certificates
 templates/
-  CV.typ          # Standard CV template
+  OP_CV.typ          # Standard CV template
   ATS_CV.typ      # ATS-optimized CV template
   cv-common.typ   # Shared components
 builds/
@@ -789,6 +786,52 @@ templates/tailored/{job-slug}-ATS_CV.typ    # ATS_CV template
 - **Reusable**: Generated configs can be manually adjusted and re-compiled
 
 **See**: `.opencode/skills/tailor-cv/README.md` for detailed documentation
+
+### Image Compare Skill (`/image-compare`)
+
+**Location**: `.opencode/skill/image-compare/`
+
+A skill for comparing multiple images and receiving detailed textual analysis. **CRITICAL: Use this skill proactively whenever working with visual output to avoid context bloat from multiple images.**
+
+**When to use:**
+- Comparing current output against reference images
+- Website development - checking implementation against design mockups
+- PDF/document styling - verifying layouts match references
+- UI implementation - comparing against design specifications
+- Before/after comparisons
+- Any task involving 2+ images
+
+**Usage:**
+```bash
+# Compare two images
+/image-compare .ai/refs/reference.png builds/current.png "Compare implementation to reference design"
+
+# Multi-image comparison
+/image-compare ref.png v1.png v2.png "Compare both versions against reference, recommend which to proceed with"
+```
+
+**Why use this skill:**
+1. **Context Efficiency**: Large images stay in sub-agent context only
+2. **Detailed Analysis**: Dedicated focus on visual comparison
+3. **Structured Output**: Consistent, actionable reports
+4. **Prevents Bloat**: Only textual analysis returned to main agent
+
+**Output format:**
+- Visual Differences Summary
+- Detailed Element Analysis (element, reference appearance, current appearance, severity, recommendation)
+- Actionable Recommendations with priorities
+
+**Integration with workflows:**
+```bash
+# After making visual changes:
+1. Compile/build output
+2. Export to PNG for review
+3. Use /image-compare to compare against reference
+4. Fix issues identified
+5. Repeat until matching
+```
+
+**See**: `.opencode/skill/image-compare/SKILL.md` for detailed documentation
 
 ## Additional Notes
 
